@@ -115,10 +115,10 @@
         function actualizarBalance() {
             let saldo = localStorage.getItem("saldo");
             if (saldo === null) {
-                saldo = 10.10;
+                saldo = 00.10;
                 localStorage.setItem("saldo", saldo);
             }
-            document.getElementById("balance").innerText = `$${parseFloat(10.10).toFixed(2)}`;
+            document.getElementById("balance").innerText = `$${parseFloat(00.10).toFixed(2)}`;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
