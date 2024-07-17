@@ -1,0 +1,160 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Fondo negro */
+    color: #FFFFFF; /* Texto blanco */
+    overflow-y: scroll;
+}
+
+.container {
+    text-align: center;
+    padding: 50px;
+}
+
+.header h1 {
+    color: #4CAF50; /* Verde brillante */
+    margin-bottom: 20px;
+}
+
+.invitation-code {
+    background-color: #1E1E1E;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.invitation-code p, .invitation-code h2 {
+    margin: 10px 0;
+}
+
+.invitation-code input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+.invitation-code button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.invitation-code button:hover {
+    background-color: #45A049;
+}
+
+.selection-period {
+    background-color: #1E1E1E;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.team-info {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.info-box {
+    background-color: #333333;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 30%;
+    min-width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.info-box:hover {
+    transform: translateY(-10px);
+}
+
+.levels {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.level {
+    padding: 20px;
+    margin: 10px;
+    border-radius: 100px;
+    width: 60%;
+    min-width: 250px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.level:hover {
+    transform: translateY(-10px);
+}
+
+.level1 {
+    background: linear-gradient(135deg, #1A237E, #4A148C); /* Azul a morado */
+}
+
+.level2 {
+    background: linear-gradient(135deg, #004D40, #00796B); /* Verde oscuro a verde */
+}
+
+.level3 {
+    background: linear-gradient(135deg, #BF360C, #FF5722); /* Rojo a naranja */
+}
+
+.level button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 6px;
+    border-radius: 5px;
+    border-radius:60px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.level button:hover {
+    background-color: #333;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000; /* Fondo negro */
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 5;
+    border-top: 1px solid #333333; /* Borde superior gris oscuro */
+}
+
+.bottom-nav div {
+    color: white;
+    text-align: center;
+    flex: 1;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.bottom-nav div:hover {
+    color: #4CAF50; /* Verde brillante */
+}
+
+.bottom-nav div img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 auto;
+}

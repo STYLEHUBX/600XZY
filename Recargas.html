@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesional Design</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #0b3d91, #000000, #ffffff); /* Fondo mezclado de azul oscuro, negro y blanco */
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to bottom right, #0b3d91, #000000, #ffffff); /* Botón con fondo mezclado de azul oscuro, negro y blanco */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .back-button svg {
+            margin-right: 5px;
+        }
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            width: 90%; /* Más ancho */
+            margin-top: 80px; /* Ajustar la posición 20px más abajo */
+        }
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to right, #0b3d91, #000000); /* Cuadros horizontales azul oscuro y negro */
+            padding: 20px; /* Más ancho */
+            margin: 10px 0;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+        }
+        .card img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .card span {
+            flex-grow: 1;
+        }
+        .card svg {
+            fill: white;
+        }
+    </style>
+</head>
+<body>
+    <a href="Home.html" class="back-button">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+       Volver
+    </a>
+
+    <div class="card-container">
+        <a href="Usdt-pago.html" class="card">
+            <img src="Usdt.jpg" alt="USDT Icon">
+            <span>TRC20-USDT</span>
+            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </a>
+        <a href="Trx.html" class="card">
+            <img src="Trx.jpeg" alt="TRX Icon">
+            <span>TRX</span>
+            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </a>
+    </div>
+</body>
+</html>

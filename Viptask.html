@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Levels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2C2C2C;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Evita desplazamiento horizontal */
+        }
+        .content {
+            width: 100%;
+            max-width: 400px; /* Tarjetas más angostas */
+            box-sizing: border-box;
+        }
+        .back-button {
+            background-color: #2980B9;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .back-button a {
+            color: white;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #005f99;
+        }
+        .vip-card {
+            background-color: #34495E; /* Nuevo color de las tarjetas */
+            width: 100%;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .vip-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .vip-header img {
+            width: 80px;
+            margin-right: 10px;
+        }
+        .vip-level {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .vip-details {
+            margin-bottom: 10px;
+        }
+        .vip-details p {
+            margin: 5px 0;
+        }
+        .vip-footer {
+            width: 100%;
+            text-align: right;
+        }
+        .vip-footer button {
+            background-color: #00b3b3;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .vip-footer button:hover {
+            background-color: #009999;
+        }
+        .vip-footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            background-color: #2C2C2C;
+            padding: 10px 0; /* Altura incrementada */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-sizing: border-box;
+            z-index: 1000; /* Asegura que la barra de navegación esté sobre el contenido */
+        }
+        .nav-bar a {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-bar img {
+            width: 20px; /* Tamaño reducido */
+            margin-bottom: 2px; /* Espacio entre el icono y el texto */
+        }
+        .spacer {
+            height: 60px; /* Ajustado el espacio al final para la barra de navegación más alta */
+        }
+
+        /* Estilos para evitar desplazamiento lateral */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <button class="back-button"><a href="Home.html">⬅️ Volver</a></button>
+
+        <!-- VIP1 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP1</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 20.00</p>
+                <p>Ganancia diaria: 21.00 USDT</p>
+                <p>El beneficio total: 3,800.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 20.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP2 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP2</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 50.00</p>
+                <p>Ganancia diaria: 60.00 USDT</p>
+                <p>El beneficio total: 18,250.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 50.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP3 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP3</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 100.00</p>
+                <p>Ganancia diaria: 110.00 USDT</p>
+                <p>El beneficio total: 36,500.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 100.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP4 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP4</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 250.00</p>
+                <p>Ganancia diaria: 260.00 USDT</p>
+                <p>El beneficio total: 91,250.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 250.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP5 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP5</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 500.00</p>
+                <p>Ganancia diaria: 510.00 USDT</p>
+                <p>El beneficio total: 182,500.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 500.00 USDT</a></button>
+            </div>
+        </div>
+
+        <div class="spacer"></div> <!-- Añade espacio al final para la barra de navegación -->
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <a href="Home.html"><img src="Home-01.png" alt="Icono 1"><p>Home</p></a>
+        <a href="Tareas.html"><img src="xd.jpg" alt="Icono 2"><p>Task</p></a>
+        <a href="Equipo.html"><img src="Equipo.png" alt="Icono 3"><p>Equipo</p></a>
+        <a href="Viptask.html"><img src="Vip-icono (1).png" alt="Icono 4"><p>Vip</p></a>
+        <a href="Perfil.html"><img src="Bank_1.png" alt="Icono 5"><p>A mi</p></a>
+    </div>
+</body>
+</html>

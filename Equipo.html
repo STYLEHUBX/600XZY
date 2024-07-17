@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #2C2C2C; /* Fondo de color azul oscuro */
+            color: white;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            background-color: #2C2C2C;
+            color: white;
+            padding: 20px 0;
+        }
+        .invitation-code, .selection-period, .levels {
+            background-color: #2C2C2C; /* Fondo de los bloques en azul oscuro */
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .invitation-code button, .levels button {
+            background-color: #2980B9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .invitation-code button:hover, .levels button:hover {
+            background-color: #2980B9;
+        }
+        .selection-period h3, .levels .level p {
+            margin: 0;
+        }
+        .team-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .info-box, .level {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+            background-color: #003366; /* Fondo de las cajas de información en azul más oscuro */
+            border-radius: 10px;
+        }
+        .level h2 {
+            margin: 10px 0;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            background-color: #2C2C2C;
+            padding: 5px 0; /* Altura reducida */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+        .nav-bar a {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            flex: 1;
+        }
+        .nav-bar img {
+            width: 25px; /* Tamaño más pequeño */
+            height: 25px; /* Tamaño más pequeño */
+            display: block;
+            margin: 0 auto;
+        }
+        .nav-bar p {
+            font-size: 10px; /* Tamaño de letra más pequeño */
+            margin-top: 3px;
+        }
+        .spacer {
+            height: 50px; /* Añade espacio al final para que los elementos no queden tapados por la barra de navegación */
+        }
+        .invitation-code input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #000; /* Texto del input en negro para mejor legibilidad */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Referidos</h1>
+        </div>
+        <div class="invitation-code">
+            <p>Código de invitación:</p>
+            <h2>251773</h2>
+            <button onclick="copyCode()">Copiar</button>
+            <p>Comparte tu enlace de referencia y comienza a ganar</p>
+            <input type="text" value="https://stylehubx.github.io/VIP600X/" id="refLink" readonly>
+            <button onclick="copyLink()">Copiar</button>
+        </div>
+        <div class="selection-period">
+            <h3>Periodo de selección</h3>
+            <div class="team-info">
+                <div class="info-box">
+                    <p>Tamaño del equipo</p>
+                    <h2>0</h2>
+                    <p>Nuevo equipo: 0</p>
+                </div>
+                <div class="info-box">
+                    <p>Recarga de equipo</p>
+                    <h2>$0.00</h2>
+                    <p>Recarga por primera vez: 0</p>
+                </div>
+                <div class="info-box">
+                    <p>Retiro del equipo</p>
+                    <h2>$0.00</h2>
+                    <p>Primer retiro: 0</p>
+                </div>
+            </div>
+        </div>
+        <div class="levels">
+            <div class="level level1">
+                <p>LEV 1</p>
+                <p>Registro/Válido</p>
+                <h2>0/0</h2>
+                <p>Porcentaje de comisión: 10%</p>
+                <p>Ingresos totales: 0</p>
+                <button>Detalles</button>
+            </div>
+            <div class="level level2">
+                <p>LEV 2</p>
+                <p>Registro/Válido</p>
+                <h2>0/0</h2>
+                <p>Porcentaje de comisión: 3%</p>
+                <p>Ingresos totales: 0</p>
+                <button>Detalles</button>
+            </div>
+            <div class="level level3">
+                <p>LEV 3</p>
+                <p>Registro/Válido</p>
+                <h2>0/0</h2>
+                <p>Porcentaje de comisión: 1%</p>
+                <p>Ingresos totales: 0</p>
+                <button>Detalles</button>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div> <!-- Añade espacio al final para la barra de navegación -->
+    <div class="nav-bar">
+        <a href="Home.html"><img src="Home-01.png" alt="Icono 1"><p>Home</p></a>
+        <a href="Tareas.html"><img src="xd.jpg" alt="Icono 2"><p>Task</p></a>
+        <a href="Equipo.html"><img src="Equipo.png" alt="Icono 3"><p>Equipo</p></a>
+        <a href="Viptask.html"><img src="Vip-icono (1).png" alt="Icono 4"><p>Vip</p></a>
+        <a href="Perfil.html"><img src="Bank_1.png" alt="Icono 5"><p>A mi</p></a>
+    </div>
+    <script>
+        function copyCode() {
+            var code = document.querySelector('.invitation-code h2').textContent;
+            navigator.clipboard.writeText(code).then(function() {
+                alert('Código copiado al portapapeles');
+            }, function(err) {
+                console.error('Error al copiar el código: ', err);
+            });
+        }
+
+        function copyLink() {
+            var link = document.getElementById('refLink').value;
+            navigator.clipboard.writeText(link).then(function() {
+                alert('Enlace copiado al portapapeles');
+            }, function(err) {
+                console.error('Error al copiar el enlace: ', err);
+            });
+        }
+    </script>
+</body>
+</html>

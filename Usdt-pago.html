@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recarga USDT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #2C2C2C;
+            color: white;
+        }
+        #container {
+            text-align: center;
+            background-color: #3B3B3B;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+        }
+        .qr-code {
+            margin: 20px 0;
+        }
+        .info {
+            margin: 20px 0;
+        }
+        .info h2 {
+            margin: 10px 0;
+        }
+        .info p {
+            margin: 10px 0;
+        }
+        .copy-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .instructions {
+            margin-top: 20px;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="location.href='Recargas.html'">⬅️Volver</button>
+    <div id="container">
+        <div class="qr-code">
+            <img src="QR.jpg" alt="QR Code">
+        </div>
+        <div class="info">
+            <h2>Deutsche Bank-USDT Mall</h2>
+            <p>TWeQ93H7u3wKts2cTBoMftLqbH9K9usgwD</p>
+            <button class="copy-button" onclick="copiarTexto()">Copiar</button>
+        </div>
+        <div class="instructions">
+            <p>Instrucciones de recarga de USDT: ¡Solo se admiten TRC20-USDT en cualquier billetera, no se admiten otras monedas!</p>
+        </div>
+    </div>
+    <script>
+        function copiarTexto() {
+            const texto = "TJ6QaxbDeK2sHbeTLWjKFdqiG4eiCaivNu";
+            navigator.clipboard.writeText(texto).then(() => {
+                alert("Dirección copiada: " + texto);
+            }).catch(err => {
+                console.error('Error al copiar el texto: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
