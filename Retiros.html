@@ -71,10 +71,10 @@
     <div id="container">
         <div class="info-box">
             <h3>Cuenta retiro</h3>
-            <p>Monto mínimo de retiro: 20 USDT</p>
+            <p>Monto mínimo de retiro: 6.50 USDT</p>
             <div class="balance">
                 <h3>Balance total</h3>
-                <p id="balance">10.10 USDT</p>
+                <p id="balance">00.00 USDT</p>
             </div>
         </div>
         <div class="input-box">
@@ -83,7 +83,7 @@
         </div>
         <div class="input-box">
             <label for="amount">Cuota:</label>
-            <input type="number" id="amount" placeholder="20.00 - 999999.00">
+            <input type="number" id="amount" placeholder="6.50 - 999999.00">
         </div>
         <div class="input-box">
             <label for="contact-info">Información del contacto:</label>
@@ -105,7 +105,7 @@
         <p></p>
     </div>
     <script>
-        let balance = 20.00;
+        let balance = 6.50;
 
         function actualizarBalance() {
             document.getElementById("balance").innerText = balance.toFixed(2) + " USDT";
