@@ -23,7 +23,7 @@
             margin-top: 20px;
             text-align: center;
         }
-        .balance-box {
+        .balance-box, .recarga-box {
             background-color: #2C2C2C;
             border-radius: 10px;
             padding: 10px;
@@ -80,6 +80,10 @@
             <h4>Balance:</h4>
             <p id="balance">$0.00</p>
         </div>
+        <div class="recarga-box">
+            <h4>Recargas:</h4>
+            <p id="recargas">$0.00</p>
+        </div>
         <div class="button-container">
             <button class="action-button" onclick="location.href='Perfil.html'">Cuenta</button>
             <button class="action-button" onclick="location.href='Retiros.html'">Retiros</button>
@@ -121,8 +125,18 @@
             document.getElementById("balance").innerText = `$${parseFloat(00.10).toFixed(2)}`;
         }
 
+        function actualizarRecargas() {
+            let recargas = localStorage.getItem("recargas");
+            if (recargas === null) {
+                recargas = 0.00;
+                localStorage.setItem("recargas", recargas);
+            }
+            document.getElementById("recargas").innerText = `$${parseFloat(recargas).toFixed(2)}`;
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             actualizarBalance();
+            actualizarRecargas();
         });
     </script>
 </body>
