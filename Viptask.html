@@ -17,11 +17,13 @@
             box-sizing: border-box;
             overflow-x: hidden; /* Evita desplazamiento horizontal */
         }
+
         .content {
             width: 100%;
-            max-width: 320px; /* Tarjetas más angostas */
+            max-width: 400px; /* Tarjetas más anchas */
             box-sizing: border-box;
         }
+
         .back-button {
             background-color: #0D47A1;
             color: white;
@@ -33,78 +35,96 @@
             text-align: center;
             font-weight: bold;
         }
+
         .back-button a {
             color: white;
             text-decoration: none;
         }
+
         .back-button:hover {
             background-color: #007BB5;
         }
+
         .vip-card {
-            background-color: #0D47A1; /* Nuevo color de las tarjetas */
+            background-color: rgba(13, 71, 161, 0.8); /* Fondo con opacidad para ver la imagen de fondo */
             width: 100%;
-            margin: 10px 0;
+            margin: 20px 0; /* Aumenta el margen para separarlas más */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s; /* Añade transición para hover */
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-image: url('ruta/a/tu-imagen.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            background-position: center;
         }
+
         .vip-card:hover {
-            transform: translateY(-10px); /* Eleva la tarjeta al hacer hover */
+            transform: translateY(-10px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
+
         .vip-header {
             display: flex;
             align-items: center;
-            margin-bottom: 15px; /* Ajuste del margen inferior */
+            margin-bottom: 15px;
         }
+
         .vip-header img {
-            width: 50px; /* Ajuste del tamaño de la imagen */
+            width: 50px;
             margin-right: 15px;
         }
+
         .vip-level {
             font-size: 1.5em;
             font-weight: bold;
         }
+
         .vip-details {
-            text-align: left; /* Alineación a la izquierda */
+            text-align: left;
         }
+
         .vip-details p {
             margin: 5px 0;
         }
+
         .vip-footer {
             width: 100%;
-            text-align: center; /* Centra el botón */
-            margin-top: 15px; /* Espacio entre los detalles y el botón */
+            text-align: center;
+            margin-top: 15px;
         }
+
         .vip-footer button {
             background-color: #00b3b3;
             color: white;
             border: none;
-            padding: 10px 20px; /* Ajusta el padding del botón */
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
         }
+
         .vip-footer button:hover {
             background-color: #007BB5;
         }
+
         .vip-footer a {
             color: white;
             text-decoration: none;
         }
+
         .nav-bar {
             display: flex;
             justify-content: space-around;
             width: 100%;
-            background-color: #007BB5; /* Color más oscuro para la barra de navegación */
-            padding: 5px 0; /* Reducción del padding */
+            background-color: #007BB5;
+            padding: 5px 0;
             position: fixed;
             bottom: 0;
             left: 0;
             box-sizing: border-box;
-            z-index: 1000; /* Asegura que la barra de navegación esté sobre el contenido */
+            z-index: 1000;
         }
+
         .nav-bar a {
             color: white;
             text-align: center;
@@ -113,20 +133,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end; /* Alineación inferior */
-            height: 40px; /* Altura de la barra de navegación */
+            justify-content: flex-end;
+            height: 40px;
         }
+
         .nav-bar img {
-            width: 24px; /* Tamaño reducido */
+            width: 24px;
             height: 24px;
             cursor: pointer;
         }
+
         .nav-bar p {
             margin: 0;
-            font-size: 0.7em; /* Tamaño de fuente reducido */
+            font-size: 0.7em;
         }
+
         .spacer {
-            height: 50px; /* Ajustado el espacio al final para la barra de navegación más alta */
+            height: 50px;
         }
 
         /* Estilos para evitar desplazamiento lateral */
@@ -151,7 +174,6 @@
                 <p>Interés simple: 7.00</p>
                 <p>Ganancia diaria: 3.50 USDT</p>
                 <p>El beneficio total: 195.00 USDT</p>
-            
             </div>
             <div class="vip-footer">
                 <button><a href="Retiros.html">Desbloquear ahora por 7 USDT</a></button>
@@ -169,7 +191,6 @@
                 <p>Interés simple: 14.00</p>
                 <p>Ganancia diaria: 7.00 USDT</p>
                 <p>El beneficio total: 210.00 USDT</p>
-                
             </div>
             <div class="vip-footer">
                 <button><a href="Recargas.html">Desbloquear ahora por 14.00 USDT</a></button>
@@ -187,7 +208,6 @@
                 <p>Interés simple: 21.00</p>
                 <p>Ganancia diaria: 10.50 USDT</p>
                 <p>El beneficio total: 450.00 USDT</p>
-                
             </div>
             <div class="vip-footer">
                 <button><a href="Recargas.html">Desbloquear ahora por 21.00 USDT</a></button>
@@ -205,7 +225,6 @@
                 <p>Interés simple: 28.00</p>
                 <p>Ganancia diaria: 14.00 USDT</p>
                 <p>El beneficio total: 600.00 USDT</p>
-                
             </div>
             <div class="vip-footer">
                 <button><a href="Recargas.html">Desbloquear ahora por 28.00 USDT</a></button>
@@ -223,7 +242,6 @@
                 <p>Interés simple: 32.00</p>
                 <p>Ganancia diaria: 16.00 USDT</p>
                 <p>El beneficio total: 750.00 USDT</p>
-                
             </div>
             <div class="vip-footer">
                 <button><a href="Recargas.html">Desbloquear ahora por 32.00 USDT</a></button>
