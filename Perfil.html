@@ -82,7 +82,7 @@
         </div>
         <div class="recarga-box">
             <h4>Recargas:</h4>
-            <p id="recargas">$05.00</p>
+            <p id="recargas">$5.00</p>
         </div>
         <div class="button-container">
             <button class="action-button" onclick="location.href='Perfil.html'">Cuenta</button>
@@ -128,10 +128,10 @@
         function actualizarRecargas() {
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
-                recargas = 05.00;
+                recargas = 5.00;
                 localStorage.setItem("recargas", recargas);
             }
-            document.getElementById("recargas").innerText = `$${parseFloat(05.00).toFixed(2)}`;
+            document.getElementById("recargas").innerText = `$${parseFloat(5.00).toFixed(2)}`;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
