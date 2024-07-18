@@ -117,12 +117,12 @@
 
     <script>
         function actualizarBalance() {
-            let saldo = localStorage.getItem("saldo");
+            let saldo = localStorage.getItem("06.50");
             if (saldo === null) {
-                saldo = 6.50;
-                localStorage.setItem("6.50", saldo);
+                saldo = 06.50;
+                localStorage.setItem("saldo", saldo);
             }
-            document.getElementById("balance").innerText = `$${parseFloat(6.50).toFixed(2)}`;
+            document.getElementById("balance").innerText = `$${parseFloat(06.50).toFixed(2)}`;
         }
 
         function actualizarRecargas() {
