@@ -47,7 +47,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
-    background-image: url('ruta/a/tu-imagen.jpg'); /* Imagen de fondo */
+    background-image: url('https://github.com/user-attachments/assets/fe254279-0687-41f7-8e6c-cab9dbd56fca'); /* Imagen de fondo */
     background-size: cover;
     background-position: center;
 }
