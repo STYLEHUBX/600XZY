@@ -64,6 +64,42 @@
             font-size: 16px;
             cursor: pointer;
         }
+        /* Estilos para la ventana modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #3B3B3B;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -103,12 +139,19 @@
         </div>
         <button class="button-confirm" onclick="confirmarRetiro()">Retirar</button>
     </div>
+    <!-- Ventana modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
     <script>
         let balance;
 
         // Inicializa el balance del usuario desde localStorage o establece un valor predeterminado
         function inicializarBalance() {
-            balance = parseFloat(localStorage.getItem('balance')) || 00.00; // Balance inicial para pruebas
+            balance = parseFloat(localStorage.getItem('balance')) || 1000.00; // Balance inicial para pruebas
             actualizarBalance();
         }
 
@@ -123,10 +166,20 @@
                 balance -= amount;
                 actualizarBalance();
                 localStorage.setItem('balance', balance);
-                alert("Su retiro está en proceso y en un momento será enviado a su cuenta de retiro.");
+                showModal("Su retiro está en proceso y en un momento será enviado a su cuenta de retiro.");
             } else {
-                alert("Saldo insuficiente o monto fuera del rango permitido.");
+                showModal("Saldo insuficiente o monto fuera del rango permitido.");
             }
+        }
+
+        // Funciones para mostrar y cerrar la ventana modal
+        function showModal(message) {
+            document.getElementById("modal-message").innerText = message;
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
         }
 
         // Inicializa el balance del usuario al cargar la página
