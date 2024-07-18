@@ -162,7 +162,7 @@
 
         // Inicializa el balance del usuario desde localStorage o establece un valor predeterminado
         function inicializarBalance() {
-            balance = parseFloat(localStorage.getItem('balance')) || 100.00; // Balance inicial para pruebas
+            balance = parseFloat(localStorage.getItem('balance')) || 1000.00; // Balance inicial para pruebas
             actualizarBalance();
         }
 
@@ -174,8 +174,10 @@
             const amount = parseFloat(document.getElementById("amount").value);
 
             if (amount >= 6.50 && amount <= balance) {
-                localStorage.setItem('balance', balance - amount);
+                balance -= amount;
+                localStorage.setItem('balance', balance);
                 balance = 0;
+                localStorage.setItem('balance', balance);
                 actualizarBalance();
                 showModal("Su retiro está en proceso y en un momento será enviado a su cuenta de retiro.");
             } else {
@@ -191,7 +193,10 @@
 
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
-            inicializarBalance();
+            if (document.getElementById("modal-message").innerText.includes("en proceso")) {
+                localStorage.setItem('balance', balance);
+                actualizarBalance();
+            }
         }
 
         // Inicializa el balance del usuario al cargar la página
