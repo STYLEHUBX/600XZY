@@ -100,6 +100,16 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .button-ok {
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -144,6 +154,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <p id="modal-message"></p>
+            <button class="button-ok" onclick="closeModal()">Aceptar</button>
         </div>
     </div>
     <script>
@@ -163,9 +174,9 @@
             const amount = parseFloat(document.getElementById("amount").value);
 
             if (amount >= 6.50 && amount <= balance) {
-                balance -= amount;
+                localStorage.setItem('balance', balance - amount);
+                balance = 0;
                 actualizarBalance();
-                localStorage.setItem('balance', balance);
                 showModal("Su retiro está en proceso y en un momento será enviado a su cuenta de retiro.");
             } else {
                 showModal("Saldo insuficiente o monto fuera del rango permitido.");
@@ -180,6 +191,7 @@
 
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
+            inicializarBalance();
         }
 
         // Inicializa el balance del usuario al cargar la página
