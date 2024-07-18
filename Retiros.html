@@ -102,10 +102,10 @@
             <p>Realmente recibido: 0 USDT</p>
         </div>
         <button class="button-confirm" onclick="confirmarRetiro()">Retirar</button>
-        <p></p>
+        <p id="status-message"></p>
     </div>
     <script>
-        let balance = 0.00;
+        let balance = 00.00; // Balance inicial para pruebas
 
         function actualizarBalance() {
             document.getElementById("balance").innerText = balance.toFixed(2) + " USDT";
@@ -113,12 +113,16 @@
 
         function confirmarRetiro() {
             const amount = parseFloat(document.getElementById("amount").value);
-            if (amount >= 0 && amount <= balance) {
-                alert("Retiro confirmado por " + amount + " USDT");
+            const statusMessage = document.getElementById("status-message");
+            
+            if (amount >= 6.50 && amount <= balance) {
                 balance -= amount;
                 actualizarBalance();
+                statusMessage.innerText = "Su retiro está en proceso y en un momento será enviado a su cuenta de retiro.";
+                statusMessage.style.color = "green";
             } else {
-                alert("Saldo insuficiente o monto fuera del rango permitido.");
+                statusMessage.innerText = "Saldo insuficiente o monto fuera del rango permitido.";
+                statusMessage.style.color = "red";
             }
         }
 
