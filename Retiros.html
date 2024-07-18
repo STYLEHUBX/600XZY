@@ -162,7 +162,7 @@
 
         // Inicializa el balance del usuario desde localStorage o establece un valor predeterminado
         function inicializarBalance() {
-            balance = parseFloat(localStorage.getItem('balance')) || 1000.00; // Balance inicial para pruebas
+            balance = parseFloat(localStorage.getItem('balance')) || 100.00; // Balance inicial para pruebas
             actualizarBalance();
         }
 
@@ -175,7 +175,6 @@
 
             if (amount >= 6.50 && amount <= balance) {
                 balance -= amount;
-                localStorage.setItem('balance', balance);
                 balance = 0;
                 localStorage.setItem('balance', balance);
                 actualizarBalance();
@@ -193,11 +192,12 @@
 
         function closeModal() {
             document.getElementById("myModal").style.display = "none";
-            if (document.getElementById("modal-message").innerText.includes("en proceso")) {
-                localStorage.setItem('balance', balance);
-                actualizarBalance();
-            }
         }
+
+        // Asegura que el balance se quede en 0.00 al salir de la página o recargar
+        window.addEventListener('beforeunload', function () {
+            localStorage.setItem('balance', balance);
+        });
 
         // Inicializa el balance del usuario al cargar la página
         inicializarBalance();
