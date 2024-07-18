@@ -6,7 +6,7 @@
     <title>VIP Levels</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #0091EA;
             color: white;
             margin: 0;
@@ -19,18 +19,19 @@
         }
         .content {
             width: 100%;
-            max-width: 350px; /* Tarjetas más angostas */
+            max-width: 320px; /* Tarjetas más angostas */
             box-sizing: border-box;
         }
         .back-button {
             background-color: #0D47A1;
             color: white;
             border: none;
-            padding: 10px 10px;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             margin-bottom: 20px;
             text-align: center;
+            font-weight: bold;
         }
         .back-button a {
             color: white;
@@ -43,28 +44,33 @@
             background-color: #0D47A1; /* Nuevo color de las tarjetas */
             width: 100%;
             margin: 10px 0;
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center; /* Centra el contenido de la tarjeta */
+            transition: transform 0.3s, box-shadow 0.3s; /* Añade transición para hover */
+        }
+        .vip-card:hover {
+            transform: translateY(-10px); /* Eleva la tarjeta al hacer hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
         .vip-header {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         .vip-header img {
-            width: 60px; /* Ajuste del tamaño de la imagen */
-            margin-right: 10px;
+            width: 50px; /* Ajuste del tamaño de la imagen */
+            margin-right: 15px;
         }
         .vip-level {
             font-size: 1.5em;
             font-weight: bold;
         }
         .vip-details {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-align: center; /* Centra el texto de los detalles */
         }
         .vip-details p {
@@ -81,6 +87,7 @@
             padding: 10px 20px; /* Ajusta el padding del botón */
             border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
         }
         .vip-footer button:hover {
             background-color: #007BB5;
@@ -93,8 +100,8 @@
             display: flex;
             justify-content: space-around;
             width: 100%;
-            background-color: #0091EA;
-            padding: 10px 0; /* Altura incrementada */
+            background-color: #007BB5; /* Color más oscuro para la barra de navegación */
+            padding: 10px 0;
             position: fixed;
             bottom: 0;
             left: 0;
@@ -112,9 +119,13 @@
             justify-content: center;
         }
         .nav-bar img {
-            width: 30px; /* Tamaño reducido */
-            height: 30px; /* Espacio entre el icono y el texto */
+            width: 24px; /* Tamaño reducido */
+            height: 24px;
             cursor: pointer;
+        }
+        .nav-bar p {
+            margin: 5px 0 0 0;
+            font-size: 0.8em; /* Tamaño de fuente reducido */
         }
         .spacer {
             height: 60px; /* Ajustado el espacio al final para la barra de navegación más alta */
