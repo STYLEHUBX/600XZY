@@ -128,7 +128,7 @@
         function actualizarRecargas() {
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
-                recargas = 0.00;
+                recargas = 05.00;
                 localStorage.setItem("recargas", recargas);
             }
             document.getElementById("recargas").innerText = `$${parseFloat(recargas).toFixed(2)}`;
