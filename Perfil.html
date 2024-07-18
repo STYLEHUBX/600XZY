@@ -78,11 +78,11 @@
         <h3>Perfil</h3>
         <div class="balance-box">
             <h4>Balance:</h4>
-            <p id="balance">$6.50</p>
+            <p id="balance">$0.00</p>
         </div>
         <div class="recarga-box">
             <h4>Recargas:</h4>
-            <p id="recargas">$10.00</p>
+            <p id="recargas">$00.00</p>
         </div>
         <div class="button-container">
             <button class="action-button" onclick="location.href='Perfil.html'">Cuenta</button>
@@ -119,19 +119,19 @@
         function actualizarBalance() {
             let saldo = localStorage.getItem("saldo");
             if (saldo === null) {
-                saldo = 6.50;
+                saldo = 0.00;
                 localStorage.setItem("saldo", saldo);
             }
-            document.getElementById("balance").innerText = `$${parseFloat(6.50).toFixed(2)}`;
+            document.getElementById("balance").innerText = `$${parseFloat(0.10).toFixed(2)}`;
         }
 
         function actualizarRecargas() {
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
-                recargas = 10.00;
+                recargas = 00.00;
                 localStorage.setItem("recargas", recargas);
             }
-            document.getElementById("recargas").innerText = `$${parseFloat(10.00).toFixed(2)}`;
+            document.getElementById("recargas").innerText = `$${parseFloat(00.00).toFixed(2)}`;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
