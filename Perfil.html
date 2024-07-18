@@ -120,7 +120,7 @@
             let saldo = localStorage.getItem("saldo");
             if (saldo === null) {
                 saldo = 6.50;
-                localStorage.setItem("saldo", saldo);
+                localStorage.setItem("6.50", saldo);
             }
             document.getElementById("balance").innerText = `$${parseFloat(0.10).toFixed(2)}`;
         }
@@ -129,7 +129,7 @@
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
                 recargas = 10.00;
-                localStorage.setItem("recargas", recargas);
+                localStorage.setItem("10.00", recargas);
             }
             document.getElementById("recargas").innerText = `$${parseFloat(00.00).toFixed(2)}`;
         }
