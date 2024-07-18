@@ -120,9 +120,9 @@
             let saldo = localStorage.getItem("saldo");
             if (saldo === null) {
                 saldo = 6.50;
-                localStorage.setItem("6.50", saldo);
+                localStorage.setItem("saldo", saldo);
             }
-            document.getElementById("balance").innerText = `$${parseFloat(0.10).toFixed(2)}`;
+            document.getElementById("balance").innerText = `$${parseFloat(6.50).toFixed(2)}`;
         }
 
         function actualizarRecargas() {
@@ -131,7 +131,7 @@
                 recargas = 10.00;
                 localStorage.setItem("10.00", recargas);
             }
-            document.getElementById("recargas").innerText = `$${parseFloat(00.00).toFixed(2)}`;
+            document.getElementById("recargas").innerText = `$${parseFloat(10.00).toFixed(2)}`;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
