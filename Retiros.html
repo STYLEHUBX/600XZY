@@ -98,13 +98,19 @@
             <input type="password" id="password" placeholder="Ingrese su contraseña">
         </div>
         <div class="info-box">
-            <p>Tasa de tramitación: 0 USDT</p>
+            <p>Tasa de tramitación: 1 USDT</p>
             <p>Realmente recibido: 0 USDT</p>
         </div>
         <button class="button-confirm" onclick="confirmarRetiro()">Retirar</button>
     </div>
     <script>
-        let balance = 1000.00; // Balance inicial para pruebas
+        let balance;
+
+        // Inicializa el balance del usuario desde localStorage o establece un valor predeterminado
+        function inicializarBalance() {
+            balance = parseFloat(localStorage.getItem('balance')) || 00.00; // Balance inicial para pruebas
+            actualizarBalance();
+        }
 
         function actualizarBalance() {
             document.getElementById("balance").innerText = balance.toFixed(2) + " USDT";
@@ -112,18 +118,19 @@
 
         function confirmarRetiro() {
             const amount = parseFloat(document.getElementById("amount").value);
-            
+
             if (amount >= 6.50 && amount <= balance) {
                 balance -= amount;
                 actualizarBalance();
+                localStorage.setItem('balance', balance);
                 alert("Su retiro está en proceso y en un momento será enviado a su cuenta de retiro.");
             } else {
                 alert("Saldo insuficiente o monto fuera del rango permitido.");
             }
         }
 
-        // Inicializa el balance del usuario
-        actualizarBalance();
+        // Inicializa el balance del usuario al cargar la página
+        inicializarBalance();
     </script>
 </body>
 </html>
