@@ -119,7 +119,7 @@
         function actualizarBalance() {
             let saldo = localStorage.getItem("saldo");
             if (saldo === null) {
-                saldo = 0.00;
+                saldo = 6.50;
                 localStorage.setItem("saldo", saldo);
             }
             document.getElementById("balance").innerText = `$${parseFloat(0.10).toFixed(2)}`;
@@ -128,7 +128,7 @@
         function actualizarRecargas() {
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
-                recargas = 00.00;
+                recargas = 10.00;
                 localStorage.setItem("recargas", recargas);
             }
             document.getElementById("recargas").innerText = `$${parseFloat(00.00).toFixed(2)}`;
