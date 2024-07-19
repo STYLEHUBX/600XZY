@@ -122,16 +122,16 @@
                 saldo = 3.80;
                 localStorage.setItem("saldo", saldo);
             }
-            document.getElementById("balance").innerText = `$${parseFloat(06.50).toFixed(2)}`;
+            document.getElementById("balance").innerText = `$${parseFloat(3.80).toFixed(2)}`;
         }
 
         function actualizarRecargas() {
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
-                recargas = 07.00;
-                localStorage.setItem("07.00", recargas);
+                recargas = 7.00;
+                localStorage.setItem("7.00", recargas);
             }
-            document.getElementById("recargas").innerText = `$${parseFloat(00.00).toFixed(2)}`;
+            document.getElementById("recargas").innerText = `$${parseFloat(7.00).toFixed(2)}`;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
