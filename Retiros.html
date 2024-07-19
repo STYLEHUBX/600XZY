@@ -120,7 +120,7 @@
             <p>Monto mínimo de retiro: 3.80 USDT</p>
             <div class="balance">
                 <h3>Balance total</h3>
-                <p id="balance">3.80 USDT</p>
+                <p id="balance">3.800 USDT</p>
             </div>
         </div>
         <div class="input-box">
@@ -173,9 +173,9 @@
         function confirmarRetiro() {
             const amount = parseFloat(document.getElementById("amount").value);
 
-            if (amount >= 3.80 && amount <= balance) {
+            if (amount >= 3.800 && amount <= balance) {
                 balance -= amount;
-                balance = 3.80;
+                balance = 3.800;
                 localStorage.setItem('balance', balance);
                 actualizarBalance();
                 showModal("Su retiro está en proceso y en un momento será enviado a su cuenta de retiro.");
