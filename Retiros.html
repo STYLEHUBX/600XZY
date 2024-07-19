@@ -174,7 +174,7 @@
             const amount = parseFloat(document.getElementById("amount").value);
 
             if (amount >= 3.800 && amount <= balance) {
-                balance -= amount;
+                balance = amount;
                 balance = 3.800;
                 localStorage.setItem('balance', balance);
                 actualizarBalance();
