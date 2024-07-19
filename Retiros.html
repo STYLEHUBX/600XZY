@@ -173,9 +173,9 @@
         function confirmarRetiro() {
             const amount = parseFloat(document.getElementById("amount").value);
 
-            if (amount >= 0.00 && amount <= balance) {
+            if (amount >= 3.80 && amount <= balance) {
                 balance -= amount;
-                balance = 0;
+                balance = 3.80;
                 localStorage.setItem('balance', balance);
                 actualizarBalance();
                 showModal("Su retiro está en proceso y en un momento será enviado a su cuenta de retiro.");
