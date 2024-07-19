@@ -117,9 +117,9 @@
 
     <script>
         function actualizarBalance() {
-            let saldo = localStorage.getItem("06.50");
+            let saldo = localStorage.getItem("3.80");
             if (saldo === null) {
-                saldo = 06.50;
+                saldo = 3.80;
                 localStorage.setItem("saldo", saldo);
             }
             document.getElementById("balance").innerText = `$${parseFloat(06.50).toFixed(2)}`;
@@ -128,8 +128,8 @@
         function actualizarRecargas() {
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
-                recargas = 00.00;
-                localStorage.setItem("00.00", recargas);
+                recargas = 07.00;
+                localStorage.setItem("07.00", recargas);
             }
             document.getElementById("recargas").innerText = `$${parseFloat(00.00).toFixed(2)}`;
         }
