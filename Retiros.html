@@ -40,7 +40,7 @@
             font-size: 14px;
             font-weight: 600;
         }
-        .container input {
+        .container input, .container select {
             padding: 12px;
             margin-top: 5px;
             border-radius: 8px;
@@ -48,7 +48,7 @@
             outline: none;
             font-size: 14px;
         }
-        .container input:focus {
+        .container input:focus, .container select:focus {
             border-color: #6a67d0;
         }
         .container button {
@@ -85,6 +85,9 @@
         <form id="withdraw-form">
             <label for="amount">Monto a retirar (mínimo $3.80)</label>
             <input type="number" id="amount" name="amount" min="3.80" step="0.01" required>
+            
+            <label for="withdraw-address">Dirección de retiro (TRX o USDT)</label>
+            <input type="text" id="withdraw-address" name="withdraw-address" required>
             
             <button type="submit">Retirar</button>
         </form>
