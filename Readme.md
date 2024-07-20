@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title style="color🏴">VIP600X</title>
+    <title style="color🏴">MagnegInvip</title>
     <style>
         body {
             margin: 0;
@@ -56,13 +56,13 @@
     </div>
     <div class="content">
         <div class="header">
-            <h1>VIP600X</h1>
+            <h1>MagnegInvip</h1>
             
         </div>
 
         <div class="section">
-            <h2>Inversión Inteligente con VIPSX600</h2>
-            <h3>En VIP600X, te ofrecemos la oportunidad de invertir de manera inteligente y segura en el mundo de la moda. Nuestro equipo de expertos trabaja constantemente para identificar las mejores oportunidades de inversión, asegurando un crecimiento constante y sostenible para tu capital.</h3>
+            <h2>Inversión Inteligente con MagnegInvip</h2>
+            <h3>En MagnegInvip, te ofrecemos la oportunidad de invertir de manera inteligente y segura en el mundo de la moda. Nuestro equipo de expertos trabaja constantemente para identificar las mejores oportunidades de inversión, asegurando un crecimiento constante y sostenible para tu capital.</h3>
         </div>
 
         <div class="section">
