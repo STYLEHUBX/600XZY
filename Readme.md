@@ -66,8 +66,8 @@
         </div>
 
         <div class="section">
-            <h2>¿Por Qué Elegir VIP600X?</h2>
-            <h3>Nuestra plataforma está diseñada para ofrecerte una experiencia de inversión sin igual. Con herramientas avanzadas y un soporte dedicado, VIP600X te permite maximizar tus rendimientos mientras minimizas los riesgos.</h3>
+            <h2>¿Por Qué Elegir MagnegInvip?</h2>
+            <h3>Nuestra plataforma está diseñada para ofrecerte una experiencia de inversión sin igual. Con herramientas avanzadas y un soporte dedicado, MagnegInvip te permite maximizar tus rendimientos mientras minimizas los riesgos.</h3>
         </div>
     </div>
 </body>
