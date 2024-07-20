@@ -9,7 +9,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
             color: white;
-            background: url('https://github.com/user-attachments/assets/578a657a-c771-47ff-8814-e53db513c7a1') no-repeat center center fixed;
+            background: url('https://github.com/user-attachments/assets/bf922981-801b-423e-8bdb-4d860e963499');
             background-size: cover;
         }
         .nav {
