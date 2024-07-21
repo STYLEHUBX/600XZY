@@ -121,7 +121,7 @@
 
     <script>
         const initialBalance = 3.80;
-        let balance = parseFloat(localStorage.getItem('balance') || initialBalance);
+        let balance = initialBalance;
 
         const balanceDisplay = document.getElementById('balance-display');
         const messageDiv = document.getElementById('message');
@@ -138,7 +138,7 @@
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
             } else {
-                balance -= amount;
+                balance = 0;
                 localStorage.setItem('balance', balance.toFixed(2));
                 updateBalanceDisplay();
                 messageDiv.textContent = 'Su retiro está en proceso, dentro de 1 a 5 minutos se le enviará.';
@@ -156,11 +156,9 @@
 
                 setTimeout(function() {
                     messageDiv.textContent = '';
-                    if (balance <= 0) {
-                        balance = 0;
-                        localStorage.setItem('balance', balance.toFixed(2));
-                        updateBalanceDisplay();
-                    }
+                    balance = 3.80; // Reset balance to 3.80 for all users
+                    localStorage.setItem('balance', balance.toFixed(2));
+                    updateBalanceDisplay();
                 }, 300000); // 5 minutos en milisegundos
             }
         });
