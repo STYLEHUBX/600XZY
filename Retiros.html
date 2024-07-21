@@ -114,12 +114,12 @@
     </div>
 
     <script>
-        const initialBalance = 3.80;
-        let balance = localStorage.getItem('3.80');
+        const initialBalance = 100.00;
+        let balance = localStorage.getItem('balance');
 
         if (balance === null) {
             balance = initialBalance;
-            localStorage.setItem('balance', balance.toFixed(2));
+            localStorage.setItem('Balance', balance.toFixed(2));
         } else {
             balance = parseFloat(balance);
         }
@@ -128,7 +128,7 @@
         const messageDiv = document.getElementById('message');
 
         function updateBalanceDisplay() {
-            balanceDisplay.textContent = 'Balance: $3.80' + balance.toFixed(2);
+            balanceDisplay.textContent = 'Balance: $' + balance.toFixed(2);
         }
 
         document.getElementById('withdraw-form').addEventListener('submit', function(event) {
