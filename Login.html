@@ -109,7 +109,7 @@
             <label for="password">Contraseña</label>
             <input type="password" id="password" name="password" required>
             
-            <button type="submit">Iniciar Sesión</button>
+            <button type="submit" id="login-button">Iniciar Sesión</button>
         </form>
         <div class="message">
             ¿No tienes cuenta? <a href="Registro.html">Regístrate</a>
@@ -119,8 +119,17 @@
     <script>
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            // Aquí puedes añadir la lógica de inicio de sesión según tus necesidades
-            window.location.href = 'Home.html';
+            const countryCode = document.getElementById('country-code').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (countryCode && phone && email && password) {
+                // Aquí puedes añadir la lógica de inicio de sesión según tus necesidades
+                window.location.href = 'Home.html';
+            } else {
+                alert('Por favor, complete todos los campos.');
+            }
         });
     </script>
 </body>
