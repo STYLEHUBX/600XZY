@@ -33,7 +33,7 @@
         .button-container {
             display: flex;
             flex-direction: column;
-            text-aling: center;
+            align-items: center; /* Centra los botones horizontalmente */
             gap: 10px;
             width: 100%;
         }
@@ -43,7 +43,6 @@
             width: 100%;
             position: fixed;
             bottom: 0; /* Posicionamiento en la parte inferior */
-            
             padding: 10px 0;
             z-index: 1000; /* Asegura que esté sobre el contenido */
         }
@@ -67,11 +66,10 @@
             color: white;
             border: none;
             padding: 8px; /* Botones más pequeños */
-            border-radius: 10px;
+            border-radius: 5px;
             font-size: 14px; /* Letras más abajo */
             cursor: pointer;
-            width: 60%;
-            
+            width: 60%; /* Ajusta el ancho para centrar mejor */
         }
     </style>
 </head>
@@ -89,6 +87,8 @@
         <div class="button-container">
             <button class="action-button" onclick="location.href='Perfil.html'">Cuenta</button>
             <button class="action-button" onclick="location.href='Retiros.html'">Retiros</button>
+        </div>
+        <div class="button-container">
             <button class="action-button" onclick="location.href='Recargas.html'">Recargar</button>
             <button class="action-button" onclick="location.href='https://stylehubx.github.io/MagnegInvip/index.html'">Cerrar Cuenta</button>
         </div>
