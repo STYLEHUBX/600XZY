@@ -25,9 +25,9 @@
             max-width: 400px;
             width: 100%;
             position: relative;
+            text-align: center;
         }
         .container h2 {
-            text-align: center;
             margin-bottom: 20px;
             font-size: 24px;
             font-weight: bold;
@@ -35,11 +35,14 @@
         .container form {
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
         .container label {
             margin-top: 10px;
             font-size: 14px;
             font-weight: 600;
+            width: 100%;
+            text-align: left;
         }
         .container input, .container select {
             padding: 12px;
@@ -48,6 +51,8 @@
             border: 1px solid #ccc;
             outline: none;
             font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
         }
         .container input:focus, .container select:focus {
             border-color: #6a67d0;
@@ -62,18 +67,17 @@
             font-size: 16px;
             margin-top: 20px;
             transition: background-color 0.3s;
+            width: 100%;
         }
         .container button:hover {
             background-color: #5653a5;
         }
         .container .balance {
-            text-align: center;
             margin-top: 20px;
             font-size: 18px;
             font-weight: bold;
         }
         .container .message {
-            text-align: center;
             margin-top: 20px;
             font-size: 16px;
             color: #ff0000;
@@ -110,24 +114,38 @@
     </div>
 
     <script>
+        let balance = localStorage.getItem('balance') || 100.00;
+        const balanceDisplay = document.getElementById('balance-display');
+        const messageDiv = document.getElementById('message');
+
+        function updateBalanceDisplay() {
+            balanceDisplay.textContent = 'Balance: $' + parseFloat(balance).toFixed(2);
+        }
+
         document.getElementById('withdraw-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            const balance = 100.00;  // Ejemplo de balance
             const amount = parseFloat(document.getElementById('amount').value);
-            const messageDiv = document.getElementById('message');
-            const balanceDisplay = document.getElementById('balance-display');
 
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
             } else {
-                messageDiv.textContent = '';
-                const newBalance = balance - amount;
-                balanceDisplay.textContent = 'Balance: $' + newBalance.toFixed(2);
-                if (newBalance === 0) {
-                    messageDiv.textContent = 'Su balance ahora es cero.';
-                }
+                balance -= amount;
+                localStorage.setItem('balance', balance.toFixed(2));
+                updateBalanceDisplay();
+                messageDiv.textContent = 'Su retiro está en proceso, dentro de 1 a 5 minutos se le enviará.';
+
+                setTimeout(function() {
+                    messageDiv.textContent = '';
+                    if (balance <= 0) {
+                        balance = 0;
+                        localStorage.setItem('balance', balance.toFixed(2));
+                        updateBalanceDisplay();
+                    }
+                }, 300000); // 5 minutos en milisegundos
             }
         });
+
+        window.addEventListener('load', updateBalanceDisplay);
     </script>
 </body>
 </html>
