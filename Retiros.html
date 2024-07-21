@@ -156,7 +156,7 @@
 
     <script>
         const initialBalance = 3.80;
-        let balance = initialBalance;
+        let balance = parseFloat(localStorage.getItem('balance')) || initialBalance;
 
         const balanceDisplay = document.getElementById('balance-display');
         const messageDiv = document.getElementById('message');
@@ -196,13 +196,6 @@
                 }, function(error) {
                     console.log('Error al enviar el correo:', error);
                 });
-
-                setTimeout(function() {
-                    balance = 3.80; // Restablecer balance a 3.80 para todos los usuarios
-                    localStorage.setItem('balance', balance.toFixed(2));
-                    updateBalanceDisplay();
-                    closeModal();
-                }, 300000); // 5 minutos en milisegundos
             }
         });
 
