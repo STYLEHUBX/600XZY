@@ -5,7 +5,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIP Levels</title>
     <style>
-        /* Tu CSS aquí */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://github.com/user-attachments/assets/bf922981-801b-423e-8bdb-4d860e963499');
+            color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Evita desplazamiento horizontal */
+        }
+
+        .content {
+            width: 100%;
+            max-width: 400px; /* Tarjetas más anchas */
+            box-sizing: border-box;
+            padding: 0 20px; /* Espacio en los lados */
+        }
+
+        .back-button {
+            background-color: #0D47A1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .back-button a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #007BB5;
+        }
+
+        .vip-card {
+            background-color: rgba(13, 71, 161, 0.8); /* Fondo con opacidad para ver la imagen de fondo */
+            width: 80%;
+            margin: 30px 0; /* Aumenta el margen para separarlas más */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-image: url('https://github.com/user-attachments/assets/bf922981-801b-423e-8bdb-4d860e963499'); /* Imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .vip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .vip-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .vip-header img {
+            width: 50px;
+            margin-right: 15px;
+        }
+
+        .vip-level {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .vip-details {
+            text-align: left;
+        }
+
+        .vip-details p {
+            margin: 5px 0;
+        }
+
+        .vip-footer {
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .vip-footer button {
+            background-color: #00b3b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .vip-footer button:hover {
+            background-color: #007BB5;
+        }
+
+        .vip-footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            
+            padding: 5px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+
+        .nav-bar a {
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 40px;
+        }
+
+        .nav-bar img {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .nav-bar p {
+            margin: 0;
+            font-size: 0.7em;
+        }
+
+        .spacer {
+            height: 50px;
+        }
+
+        /* Estilos para evitar desplazamiento lateral */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .vip-card img.extra-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -13,7 +173,7 @@
         <button class="back-button"><a href="Home.html">⬅️ Volver</a></button>
 
         <!-- VIP1 Card -->
-        <div class="vip-card" id="vip1">
+        <div class="vip-card">
             <div class="vip-header">
                 <img src="Vip-task.jpg" alt="VIP">
                 <span class="vip-level">VIP1</span>
@@ -25,11 +185,111 @@
                 <p>El beneficio total: 195.00 USDT</p>
             </div>
             <div class="vip-footer">
-                <button onclick="completarTarea('vip1')">Completar Tarea</button>
+                <button><a href="Recargas.html">Desbloqueado</a></button>
             </div>
         </div>
 
-        <!-- Más tarjetas VIP aquí -->
+        <!-- VIP2 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP2</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 14.00</p>
+                <p>Ganancia diaria: 7.00 USDT</p>
+                <p>El beneficio total: 210.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 14.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP3 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP3</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 21.00</p>
+                <p>Ganancia diaria: 10.50 USDT</p>
+                <p>El beneficio total: 450.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 21.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP4 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP4</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 28.00</p>
+                <p>Ganancia diaria: 14.00 USDT</p>
+                <p>El beneficio total: 600.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 28.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP5 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP5</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 35.00</p>
+                <p>Ganancia diaria: 17.50 USDT</p>
+                <p>El beneficio total: 800.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 35.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP6 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP6</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 42.00</p>
+                <p>Ganancia diaria: 21.00 USDT</p>
+                <p>El beneficio total: 900.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 42.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP7 Card -->
+        <div class="vip-card">
+            <div class="vip-header">
+                <img src="Vip-task.jpg" alt="VIP">
+                <span class="vip-level">VIP7</span>
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 50.00</p>
+                <p>Ganancia diaria: 25.00 USDT</p>
+                <p>El beneficio total: 1000.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 50.00 USDT</a></button>
+            </div>
+        </div>
 
         <div class="spacer"></div> <!-- Añade espacio al final para la barra de navegación -->
     </div>
@@ -42,34 +302,5 @@
         <a href="Viptask.html"><img src="Vip-icono (1).png" alt="Icono 4"><p>Vip</p></a>
         <a href="Perfil.html"><img src="Bank_1.png" alt="Icono 5"><p>A mi</p></a>
     </div>
-
-    <script>
-        function completarTarea(vipCardId) {
-            const now = new Date();
-            localStorage.setItem(vipCardId, now.getTime());
-            alert('Tarea completada. Volverá a aparecer en 24 horas.');
-            mostrarTareas();
-        }
-
-        function mostrarTareas() {
-            const vipCards = document.querySelectorAll('.vip-card');
-            vipCards.forEach(card => {
-                const lastCompletionTime = localStorage.getItem(card.id);
-                if (lastCompletionTime) {
-                    const timeElapsed = new Date().getTime() - lastCompletionTime;
-                    const hoursElapsed = timeElapsed / (1000 * 60 * 60);
-                    if (hoursElapsed < 24) {
-                        card.style.display = 'none';
-                    } else {
-                        card.style.display = 'block';
-                    }
-                } else {
-                    card.style.display = 'block';
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', mostrarTareas);
-    </script>
 </body>
 </html>
