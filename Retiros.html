@@ -109,12 +109,12 @@
             
             <button type="submit">Retirar</button>
         </form>
-        <div class="balance" id="balance-display">Balance: $100.00</div>
+        <div class="balance" id="balance-display">Balance: $0.00</div>
         <div class="message" id="message"></div>
     </div>
 
     <script>
-        let balance = localStorage.getItem('balance') || 100.00;
+        let balance = localStorage.getItem('balance') || 0.00;
         const balanceDisplay = document.getElementById('balance-display');
         const messageDiv = document.getElementById('message');
 
