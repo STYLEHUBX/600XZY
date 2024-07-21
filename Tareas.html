@@ -15,7 +15,7 @@
             align-items: center;
         }
         #container {
-            background-color: ;
+            background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             padding: 20px;
             width: 90%;
@@ -108,9 +108,9 @@
     </div>
 
     <script>
-        let taskContainer = document.getElementById("task-container");
-        let timerElement = document.getElementById("timer");
-        let countdownTime = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+        const taskContainer = document.getElementById("task-container");
+        const timerElement = document.getElementById("timer");
+        const countdownTime = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
         let endTime = localStorage.getItem("taskEndTime");
 
         if (!endTime) {
@@ -119,7 +119,7 @@
         }
 
         function updateTimer() {
-            let now = new Date().getTime();
+            const now = new Date().getTime();
             let distance = endTime - now;
 
             if (distance < 0) {
@@ -127,30 +127,37 @@
                 localStorage.removeItem("taskEndTime");
                 endTime = new Date().getTime() + countdownTime;
                 localStorage.setItem("taskEndTime", endTime);
-                taskContainer.innerHTML = `
-                    <div class="task-box">
-                        <img src="imagen-tarea.jpg" alt="Tarea">
-                        <p>[REFILL] PILOT G2 Gel Pen 0.5mm / 0.7mm / 1.0mm</p>
-                        <p>Precio: 50.00</p>
-                        <p>Ingreso: 1.00</p>
-                        <button class="button-complete" onclick="completarTarea()">Completar</button>
-                    </div>
-                `;
+                showTask();
             } else {
-                taskContainer.innerHTML = '';
+                hideTask();
             }
 
-            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            timerElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+            timerElement.innerHTML = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function showTask() {
+            taskContainer.innerHTML = `
+                <div class="task-box">
+                    <img src="imagen-tarea.jpg" alt="Tarea">
+                    <p>[REFILL] PILOT G2 Gel Pen 0.5mm / 0.7mm / 1.0mm</p>
+                    <p>Precio: 50.00</p>
+                    <p>Ingreso: 1.00</p>
+                    <button class="button-complete" onclick="completarTarea()">Completar</button>
+                </div>
+            `;
+        }
+
+        function hideTask() {
+            taskContainer.innerHTML = '';
         }
 
         function completarTarea() {
-            taskContainer.innerHTML = '';
             alert("Tarea completada");
-            
+            hideTask();
             // Actualizar el saldo en localStorage
             let saldo = localStorage.getItem("saldo") || 0;
             let nuevoSaldo = parseFloat(saldo) + 1.00;
