@@ -34,7 +34,13 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Centra los botones horizontalmente */
-            gap: 10px;
+            gap: 10px; /* Espacio entre filas de botones */
+            width: 100%;
+        }
+        .button-row {
+            display: flex;
+            justify-content: center; /* Centra los botones horizontalmente en la fila */
+            gap: 10px; /* Espacio entre botones */
             width: 100%;
         }
         .nav-bar {
@@ -69,8 +75,7 @@
             border-radius: 5px;
             font-size: 14px; /* Letras más abajo */
             cursor: pointer;
-            width: 60%; /* Ajusta el ancho para centrar mejor */
-            margin-bottom: 10px; /* Espacio entre los botones */
+            width: 45%; /* Ajusta el ancho para alinear los botones */
         }
     </style>
 </head>
@@ -86,12 +91,14 @@
             <p id="recargas">$0.00</p>
         </div>
         <div class="button-container">
-            <button class="action-button" onclick="location.href='Perfil.html'">Cuenta</button>
-            <button class="action-button" onclick="location.href='Retiros.html'">Retiros</button>
-        </div>
-        <div class="button-container">
-            <button class="action-button" onclick="location.href='Recargas.html'">Recargar</button>
-            <button class="action-button" onclick="location.href='https://stylehubx.github.io/MagnegInvip/index.html'">Cerrar Cuenta</button>
+            <div class="button-row">
+                <button class="action-button" onclick="location.href='Perfil.html'">Cuenta</button>
+                <button class="action-button" onclick="location.href='Retiros.html'">Retiros</button>
+            </div>
+            <div class="button-row">
+                <button class="action-button" onclick="location.href='Recargas.html'">Recargar</button>
+                <button class="action-button" onclick="location.href='https://stylehubx.github.io/MagnegInvip/index.html'">Cerrar Cuenta</button>
+            </div>
         </div>
     </div>
 
