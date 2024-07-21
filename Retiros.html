@@ -95,6 +95,12 @@
             color: #ffa500;
         }
     </style>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init('service_b244er4'); // Reemplaza 'service_b244er4' con tu User ID de EmailJS
+        })();
+    </script>
 </head>
 <body>
     <div class="container">
@@ -107,9 +113,9 @@
             <label for="withdraw-address">Dirección de retiro (TRX o USDT)</label>
             <input type="text" id="withdraw-address" name="withdraw-address" required>
             
-            <button type="submit">Retirar</button>
+            <button type="submit">Enviar</button>
         </form>
-        <div class="balance" id="balance-display">Balance: $3.80</div>
+        <div class="balance" id="balance-display">Balance: $0.00</div>
         <div class="message" id="message"></div>
     </div>
 
@@ -119,7 +125,7 @@
 
         if (balance === null) {
             balance = initialBalance;
-            localStorage.setItem('Balance', balance.toFixed(2));
+            localStorage.setItem('balance', balance.toFixed(2));
         } else {
             balance = parseFloat(balance);
         }
@@ -134,6 +140,7 @@
         document.getElementById('withdraw-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const amount = parseFloat(document.getElementById('amount').value);
+            const withdrawAddress = document.getElementById('withdraw-address').value;
 
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
@@ -142,6 +149,17 @@
                 localStorage.setItem('balance', balance.toFixed(2));
                 updateBalanceDisplay();
                 messageDiv.textContent = 'Su retiro está en proceso, dentro de 1 a 5 minutos se le enviará.';
+
+                // Enviar correo electrónico
+                emailjs.send('service_b244er4', 'template_your_template_id', {
+                    to_email: 'MagnegInvip@gmail.com',
+                    amount: amount,
+                    withdraw_address: withdrawAddress
+                }).then(function(response) {
+                    console.log('Correo enviado:', response.status, response.text);
+                }, function(error) {
+                    console.log('Error al enviar el correo:', error);
+                });
 
                 setTimeout(function() {
                     messageDiv.textContent = '';
