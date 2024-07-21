@@ -88,7 +88,7 @@
             <button class="action-button" onclick="location.href='Perfil.html'">Cuenta</button>
             <button class="action-button" onclick="location.href='Retiros.html'">Retiros</button>
             <button class="action-button" onclick="location.href='Recargas.html'">Recargar</button>
-            <button class="action-button" onclick="location.href='https://stylehubx.github.io/UsdtWealth/Registro.html'">Cerrar Cuenta</button>
+            <button class="action-button" onclick="location.href='https://stylehubx.github.io/MagnegInvip/index.html'">Cerrar Cuenta</button>
         </div>
     </div>
 
@@ -122,13 +122,13 @@
                 saldo = 0.00;
                 localStorage.setItem("saldo", saldo);
             }
-            document.getElementById("balance").innerText = `$${parseFloat(00.00).toFixed(2)}`;
+            document.getElementById("balance").innerText = `$${parseFloat(0.00).toFixed(2)}`;
         }
 
         function actualizarRecargas() {
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
-                recargas = 7.00;
+                recargas = 0.00;
                 localStorage.setItem("7.00", recargas);
             }
             document.getElementById("recargas").innerText = `$${parseFloat(7.00).toFixed(2)}`;
