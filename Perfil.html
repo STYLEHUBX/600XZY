@@ -82,7 +82,7 @@
         </div>
         <div class="recarga-box">
             <h4>Recargas:</h4>
-            <p id="recargas">$00.00</p>
+            <p id="recargas">$0.00</p>
         </div>
         <div class="button-container">
             <button class="action-button" onclick="location.href='Perfil.html'">Cuenta</button>
@@ -117,7 +117,7 @@
 
     <script>
         function actualizarBalance() {
-            let saldo = localStorage.getItem("00.00");
+            let saldo = localStorage.getItem("0.00");
             if (saldo === null) {
                 saldo = 0.00;
                 localStorage.setItem("saldo", saldo);
@@ -129,7 +129,7 @@
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
                 recargas = 0.00;
-                localStorage.setItem("7.00", recargas);
+                localStorage.setItem("0.00", recargas);
             }
             document.getElementById("recargas").innerText = `$${parseFloat(7.00).toFixed(2)}`;
         }
