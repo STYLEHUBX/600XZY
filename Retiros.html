@@ -143,9 +143,6 @@
             <label for="withdraw-address">Dirección de retiro (TRX o USDT)</label>
             <input type="text" id="withdraw-address" name="withdraw-address" required>
             
-            <label for="email">Correo Electrónico</label>
-            <input type="email" id="email" name="email" required>
-            
             <button type="submit">Retirar</button>
         </form>
         <div class="balance" id="balance-display">Balance: $3.80</div>
@@ -177,7 +174,6 @@
             event.preventDefault();
             const amount = parseFloat(document.getElementById('amount').value);
             const withdrawAddress = document.getElementById('withdraw-address').value;
-            const userEmail = document.getElementById('email').value;
 
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
@@ -194,8 +190,7 @@
                 emailjs.send('service_b244er4', 'template_735kydj', {
                     to_email: 'magneginvip@gmail.com',
                     amount: amount,
-                    withdraw_address: withdrawAddress,
-                    user_email: userEmail
+                    withdraw_address: withdrawAddress
                 }).then(function(response) {
                     console.log('Correo enviado:', response.status, response.text);
                 }, function(error) {
