@@ -128,7 +128,7 @@
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init('YOUR_USER_ID'); // Inicializar EmailJS con tu User ID
+            emailjs.init('service_b244er4'); // Inicializar EmailJS con tu User ID
         })();
     </script>
 </head>
@@ -187,7 +187,8 @@
                 modal.classList.add('show');
 
                 // Enviar correo electrónico
-                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                emailjs.send('service_b244er4', 'template_735kydj', {
+                    from_name: 'J29538349@gmail.com',
                     to_email: 'magneginvip@gmail.com',
                     amount: amount,
                     withdraw_address: withdrawAddress
