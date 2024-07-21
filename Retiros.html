@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retiro</title>
+    <title>Retiro AGIQT Quantify</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -125,12 +125,6 @@
             background-color: #5653a5;
         }
     </style>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init('service_b244er4'); // Inicializar EmailJS con tu User ID
-        })();
-    </script>
 </head>
 <body>
     <div class="container">
@@ -143,7 +137,7 @@
             <label for="withdraw-address">Dirección de retiro (TRX o USDT)</label>
             <input type="text" id="withdraw-address" name="withdraw-address" required>
             
-            <button type="submit">Enviar</button>
+            <button type="submit">Retirar</button>
         </form>
         <div class="balance" id="balance-display">Balance: $3.80</div>
         <div class="message" id="message"></div>
@@ -186,19 +180,8 @@
                 // Mostrar el modal
                 modal.classList.add('show');
 
-                // Enviar correo electrónico
-                emailjs.send('service_b244er4', 'template_735kydj', {
-                    to_email: 'magneginvip@gmail.com',
-                    amount: amount,
-                    withdraw_address: withdrawAddress
-                }).then(function(response) {
-                    console.log('Correo enviado:', response.status, response.text);
-                }, function(error) {
-                    console.log('Error al enviar el correo:', error);
-                });
-
                 setTimeout(function() {
-                    balance = 3.80; // Reset balance to 3.80 for all users
+                    balance = 3.80; // Restablecer balance a 3.80 para todos los usuarios
                     localStorage.setItem('balance', balance.toFixed(2));
                     updateBalanceDisplay();
                     closeModal();
