@@ -65,29 +65,26 @@
         .container button:hover {
             background-color: #5653a5;
         }
-        .container a {
-            text-decoration: none;
-            color: #ffa500;
+        .container .message {
             text-align: center;
-            display: block;
-            margin-top: 15px;
+            margin-top: 20px;
             font-size: 14px;
         }
-        .container .login-btn {
-            background-color: #ffa500;
-            color: #fff;
-            margin-top: 10px;
-            transition: background-color 0.3s;
+        .container .message a {
+            color: #ffa500;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
         }
-        .container .login-btn:hover {
-            background-color: #cc8400;
+        .container .message a:hover {
+            color: #cc8400;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Registrar una cuenta</h2>
-        <form>
+        <form id="register-form">
             <label for="account">Cuenta (6-16 caracteres, no se permiten espacios)</label>
             <input type="text" id="account" name="account" minlength="6" maxlength="16" required>
             
@@ -110,8 +107,18 @@
             
             <button type="submit">Registro</button>
         </form>
-        <button class="login-btn" onclick="window.location.href='login.html'">Iniciar Sesión</button>
+        <div class="message">
+            ¿Ya tienes cuenta? <a href="Login.html">Inicia sesión</a>
+        </div>
         <a href="Home.html">ir a la página de inicio</a>
     </div>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Aquí puedes añadir la lógica de registro según tus necesidades
+            window.location.href = 'Home.html';
+        });
+    </script>
 </body>
 </html>
