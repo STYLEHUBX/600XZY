@@ -98,7 +98,7 @@
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init('service_b244er4'); // Reemplaza 'service_b244er4' con tu User ID de EmailJS
+            emailjs.init('service_b244er4'); // Inicializar EmailJS con el User ID
         })();
     </script>
 </head>
@@ -121,7 +121,7 @@
 
     <script>
         const initialBalance = 3.80;
-        let balance = parseFloat(localStorage.getItem('3.80') || initialBalance);
+        let balance = parseFloat(localStorage.getItem('balance') || initialBalance);
 
         const balanceDisplay = document.getElementById('balance-display');
         const messageDiv = document.getElementById('message');
@@ -144,8 +144,8 @@
                 messageDiv.textContent = 'Su retiro está en proceso, dentro de 1 a 5 minutos se le enviará.';
 
                 // Enviar correo electrónico
-                emailjs.send('service_b244er4', 'ejs-test-mail-service', {
-                    to_email: 'MagnegInvip@gmail.com',
+                emailjs.send('service_b244er4', '_ejs-test-mail-service_', {
+                    to_email: 'magneginvip@gmail.com',
                     amount: amount,
                     withdraw_address: withdrawAddress
                 }).then(function(response) {
@@ -157,7 +157,7 @@
                 setTimeout(function() {
                     messageDiv.textContent = '';
                     if (balance <= 0) {
-                        balance = initialBalance;
+                        balance = 0;
                         localStorage.setItem('balance', balance.toFixed(2));
                         updateBalanceDisplay();
                     }
