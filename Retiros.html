@@ -110,11 +110,25 @@
         .modal.show {
             display: block;
         }
+        .modal button {
+            background-color: #6a67d0;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .modal button:hover {
+            background-color: #5653a5;
+        }
     </style>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init('service_b244er4'); // Inicializar EmailJS con el User ID
+            emailjs.init('YOUR_USER_ID'); // Inicializar EmailJS con tu User ID
         })();
     </script>
 </head>
@@ -137,6 +151,7 @@
 
     <div class="modal" id="modal">
         <p>Su retiro está en proceso, por favor tenga paciencia.</p>
+        <button onclick="closeModal()">Aceptar</button>
     </div>
 
     <script>
@@ -149,6 +164,10 @@
 
         function updateBalanceDisplay() {
             balanceDisplay.textContent = 'Balance: $' + balance.toFixed(2);
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
         }
 
         document.getElementById('withdraw-form').addEventListener('submit', function(event) {
@@ -168,7 +187,7 @@
                 modal.classList.add('show');
 
                 // Enviar correo electrónico
-                emailjs.send('service_b244er4', '_ejs-test-mail-service_', {
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
                     to_email: 'magneginvip@gmail.com',
                     amount: amount,
                     withdraw_address: withdrawAddress
@@ -179,10 +198,10 @@
                 });
 
                 setTimeout(function() {
-                    modal.classList.remove('show');
                     balance = 3.80; // Reset balance to 3.80 for all users
                     localStorage.setItem('balance', balance.toFixed(2));
                     updateBalanceDisplay();
+                    closeModal();
                 }, 300000); // 5 minutos en milisegundos
             }
         });
