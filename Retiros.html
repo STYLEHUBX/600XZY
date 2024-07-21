@@ -24,6 +24,7 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             max-width: 400px;
             width: 100%;
+            position: relative;
         }
         .container h2 {
             text-align: center;
@@ -77,10 +78,23 @@
             font-size: 16px;
             color: #ff0000;
         }
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .back-arrow:hover {
+            color: #ffa500;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="back-arrow" onclick="window.location.href='Home.html'">&#8592;</div>
         <h2>Retirar Fondos</h2>
         <form id="withdraw-form">
             <label for="amount">Monto a retirar (mínimo $3.80)</label>
