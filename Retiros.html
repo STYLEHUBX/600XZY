@@ -114,7 +114,7 @@
     </div>
 
     <script>
-        let balance = localStorage.getItem('balance') || 0.00;
+        let balance = localStorage.getItem('balance') || 3.80;
         const balanceDisplay = document.getElementById('balance-display');
         const messageDiv = document.getElementById('message');
 
@@ -136,8 +136,8 @@
 
                 setTimeout(function() {
                     messageDiv.textContent = '';
-                    if (balance <= 0) {
-                        balance = 0;
+                    if (balance <= 3.80) {
+                        balance = 3.80;
                         localStorage.setItem('balance', balance.toFixed(2));
                         updateBalanceDisplay();
                     }
