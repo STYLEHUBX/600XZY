@@ -155,7 +155,7 @@
         const initialBalance = 3.80;
         let balance = parseFloat(localStorage.getItem('balance'));
 
-        if (isNaN(balance)) {
+        if (isNaN(balance) || balance === 0) {
             balance = initialBalance;
             localStorage.setItem('balance', balance.toFixed(2));
         }
