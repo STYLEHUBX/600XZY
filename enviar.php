@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><strong>Correo electrónico del solicitante:</strong> $userEmail</p>
         ";
 
+        // Envía el correo
         $mail->send();
         echo 'El mensaje ha sido enviado';
     } catch (Exception $e) {
