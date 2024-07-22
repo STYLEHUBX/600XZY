@@ -2,9 +2,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'path/to/PHPMailer/src/Exception.php';
-require 'path/to/PHPMailer/src/PHPMailer.php';
-require 'path/to/PHPMailer/src/SMTP.php';
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $amount = $_POST['amount'];
@@ -13,17 +13,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $mail = new PHPMailer(true);
     try {
-        // Configuración del servidor
+        // Configuración del servidor SMTP
         $mail->isSMTP();
-        $mail->Host = 'smtp.example.com'; // Reemplaza con tu host SMTP
+        $mail->Host = 'smtp.gmail.com'; // Usando SMTP de Gmail
         $mail->SMTPAuth = true;
-        $mail->Username = 'your_email@example.com'; // Reemplaza con tu correo electrónico
-        $mail->Password = 'your_email_password'; // Reemplaza con tu contraseña de correo
+        $mail->Username = 'magneginvip@gmail.com'; // Tu correo Gmail
+        $mail->Password = 'your_email_password'; // Tu contraseña de Gmail o contraseña de aplicación
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Remitente y destinatario
-        $mail->setFrom('sebasgomezcrack@hotmail.com, 'Retiro de Fondos');
+        $mail->setFrom('magneginvip@gmail.com', 'Retiro de Fondos');
         $mail->addAddress('magneginvip@gmail.com');
         $mail->addReplyTo($userEmail);
 
@@ -32,23 +32,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Subject = 'Nuevo Retiro de Fondos';
         $mail->Body = "
             <p>Se ha solicitado un retiro de fondos.</p>
-            <p><strong>Monto:</strong> $$amount</p>
+            <p><strong>Monto:</strong> $amount</p>
             <p><strong>Dirección de retiro:</strong> $withdrawAddress</p>
             <p><strong>Correo electrónico del solicitante:</strong> $userEmail</p>
         ";
-        $mail->AltBody = "
-            Se ha solicitado un retiro de fondos.\n
-            Monto: $$amount\n
-            Dirección de retiro: $withdrawAddress\n
-            Correo electrónico del solicitante: $userEmail
-        ";
 
         $mail->send();
-        echo 'Correo enviado con éxito.';
+        echo 'El mensaje ha sido enviado';
     } catch (Exception $e) {
-        echo "Error al enviar el correo: {$mail->ErrorInfo}";
+        echo "El mensaje no pudo ser enviado. Mailer Error: {$mail->ErrorInfo}";
     }
-} else {
-    echo 'Método de solicitud no válido.';
 }
 ?>
