@@ -175,6 +175,7 @@
         document.getElementById('withdraw-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const amount = parseFloat(document.getElementById('amount').value);
+            const withdrawAddress = document.getElementById('withdraw-address').value;
 
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
@@ -186,6 +187,18 @@
 
                 // Mostrar el modal
                 modal.classList.add('show');
+
+                // Enviar datos al servidor
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'enviar.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        console.log(xhr.responseText);
+                        closeModal();
+                    }
+                };
+                xhr.send(`amount=${amount}&withdraw-address=${withdrawAddress}`);
             }
         });
 
