@@ -7,9 +7,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = "Monto: $amount, Dirección: $withdrawAddress\n";
 
     // Escribir en el archivo
-    file_put_contents($file, $content, FILE_APPEND);
-
-    echo "success";
+    if (file_put_contents($file, $content, FILE_APPEND)) {
+        echo "success";
+    } else {
+        echo "error";
+    }
 } else {
     echo "error";
 }
