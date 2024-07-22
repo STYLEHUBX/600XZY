@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retiros</title>
+    <title>Retiro</title>
     <style>
         /* Estilos CSS */
         body {
@@ -133,7 +133,7 @@
     <div class="container">
         <div class="back-arrow" onclick="window.location.href='Home.html'">&#8592;</div>
         <h2>Retirar Fondos</h2>
-        <form id="withdraw-form">
+        <form id="withdraw-form" action="guardar_retiro.php" method="post">
             <label for="amount">Monto a retirar (mínimo $3.80)</label>
             <input type="number" id="amount" name="amount" min="3.80" step="3.80" required>
             
@@ -190,7 +190,7 @@
 
                 // Enviar datos al servidor
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', 'enviar.php', true);
+                xhr.open('POST', 'guardar_retiro.php', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4 && xhr.status == 200) {
