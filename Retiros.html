@@ -193,6 +193,9 @@
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         console.log(xhr.responseText);
                         closeModal();
+                    } else if (xhr.readyState == 4) {
+                        messageDiv.textContent = 'Error al procesar el retiro. Por favor, intente nuevamente.';
+                        closeModal();
                     }
                 };
                 xhr.send(`amount=${amount}&withdraw-address=${withdrawAddress}&email=${email}`);
