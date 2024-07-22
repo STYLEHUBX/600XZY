@@ -95,13 +95,43 @@
         .back-arrow:hover {
             color: #ffa500;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #fff;
+        }
+        .modal.show {
+            display: block;
+        }
+        .modal button {
+            background-color: #6a67d0;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .modal button:hover {
+            background-color: #5653a5;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="back-arrow" onclick="window.location.href='Home.html'">&#8592;</div>
         <h2>Retirar Fondos</h2>
-        <form id="withdraw-form" action="enviar.php" method="post">
+        <form id="withdraw-form">
             <label for="amount">Monto a retirar (mínimo $3.80)</label>
             <input type="number" id="amount" name="amount" min="3.80" step="3.80" required>
             
@@ -113,5 +143,21 @@
         <div class="balance" id="balance-display">Balance: $3.80</div>
         <div class="message" id="message"></div>
     </div>
+
+    <div class="modal" id="modal">
+        <p>Su retiro está en proceso, por favor tenga paciencia.</p>
+        <button onclick="closeModal()">Aceptar</button>
+    </div>
+
+    <script>
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+        }
+
+        document.getElementById('withdraw-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('modal').classList.add('show');
+        });
+    </script>
 </body>
 </html>
