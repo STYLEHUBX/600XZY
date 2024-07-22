@@ -178,7 +178,7 @@
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
             } else {
-                balance = 0;
+                balance = 0; // El balance se establece en cero después del retiro
                 localStorage.setItem('balance', balance.toFixed(2));
                 updateBalanceDisplay();
                 messageDiv.textContent = '';
