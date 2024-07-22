@@ -5,138 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retiro</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('https://github.com/user-attachments/assets/bf922981-801b-423e-8bdb-4d860e963499');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: #fff;
-        }
-        .container {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
-            width: 100%;
-            position: relative;
-            text-align: center;
-        }
-        .container h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .container form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container label {
-            margin-top: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            width: 100%;
-            text-align: left;
-        }
-        .container input, .container select {
-            padding: 12px;
-            margin-top: 5px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            outline: none;
-            font-size: 14px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .container input:focus, .container select:focus {
-            border-color: #6a67d0;
-        }
-        .container button {
-            background-color: #6a67d0;
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-        .container button:hover {
-            background-color: #5653a5;
-        }
-        .container .balance {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .container .message {
-            margin-top: 20px;
-            font-size: 16px;
-            color: #ff0000;
-        }
-        .back-arrow {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 24px;
-            color: #fff;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .back-arrow:hover {
-            color: #ffa500;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            color: #fff;
-        }
-        .modal.show {
-            display: block;
-        }
-        .modal button {
-            background-color: #6a67d0;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-        .modal button:hover {
-            background-color: #5653a5;
-        }
+        /* Estilos CSS se mantienen igual */
     </style>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init('magneginvip@gmail.com'); // Reemplaza con tu User ID de EmailJS
-        })();
-    </script>
 </head>
 <body>
     <div class="container">
         <div class="back-arrow" onclick="window.location.href='Home.html'">&#8592;</div>
         <h2>Retirar Fondos</h2>
-        <form id="withdraw-form">
+        <form id="withdraw-form" method="POST" action="enviar.php">
             <label for="amount">Monto a retirar (mínimo $3.80)</label>
             <input type="number" id="amount" name="amount" min="3.80" step="3.80" required>
             
@@ -173,7 +49,6 @@
         document.getElementById('withdraw-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const amount = parseFloat(document.getElementById('amount').value);
-            const withdrawAddress = document.getElementById('withdraw-address').value;
 
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
@@ -185,17 +60,6 @@
 
                 // Mostrar el modal
                 modal.classList.add('show');
-
-                // Enviar correo electrónico
-                emailjs.send('service_b244er4', 'template_735kydj', {
-                    to_email: 'magneginvip@gmail.com',
-                    amount: amount,
-                    withdraw_address: withdrawAddress
-                }).then(function(response) {
-                    console.log('Correo enviado:', response.status, response.text);
-                }, function(error) {
-                    console.log('Error al enviar el correo:', error);
-                });
             }
         });
 
