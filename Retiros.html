@@ -150,14 +150,39 @@
     </div>
 
     <script>
+        const initialBalance = 3.80;
+        let balance = parseFloat(localStorage.getItem('balance')) || initialBalance;
+
+        const balanceDisplay = document.getElementById('balance-display');
+        const messageDiv = document.getElementById('message');
+        const modal = document.getElementById('modal');
+
+        function updateBalanceDisplay() {
+            balanceDisplay.textContent = 'Balance: $' + balance.toFixed(2);
+        }
+
         function closeModal() {
-            document.getElementById('modal').classList.remove('show');
+            modal.classList.remove('show');
         }
 
         document.getElementById('withdraw-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            document.getElementById('modal').classList.add('show');
+            const amount = parseFloat(document.getElementById('amount').value);
+
+            if (amount > balance) {
+                messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
+            } else {
+                balance = 0; // El balance se establece en cero después del retiro
+                localStorage.setItem('balance', balance.toFixed(2));
+                updateBalanceDisplay();
+                messageDiv.textContent = '';
+
+                // Mostrar el modal
+                modal.classList.add('show');
+            }
         });
+
+        window.addEventListener('load', updateBalanceDisplay);
     </script>
 </body>
 </html>
