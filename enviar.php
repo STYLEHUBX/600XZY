@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port = 587;
 
         // Remitente y destinatario
-        $mail->setFrom('no-reply@yourdomain.com', 'Retiro de Fondos');
+        $mail->setFrom('sebasgomezcrack@hotmail.com, 'Retiro de Fondos');
         $mail->addAddress('magneginvip@gmail.com');
         $mail->addReplyTo($userEmail);
 
