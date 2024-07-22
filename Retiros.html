@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retiros</title>
+    <title>Retiro</title>
     <style>
         /* Estilos CSS */
         body {
@@ -95,115 +95,23 @@
         .back-arrow:hover {
             color: #ffa500;
         }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            color: #fff;
-        }
-        .modal.show {
-            display: block;
-        }
-        .modal button {
-            background-color: #6a67d0;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-        .modal button:hover {
-            background-color: #5653a5;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="back-arrow" onclick="window.location.href='Home.html'">&#8592;</div>
         <h2>Retirar Fondos</h2>
-        <form id="withdraw-form">
+        <form id="withdraw-form" action="enviar.php" method="post">
             <label for="amount">Monto a retirar (mínimo $3.80)</label>
             <input type="number" id="amount" name="amount" min="3.80" step="3.80" required>
             
             <label for="withdraw-address">Dirección de retiro (TRX o USDT)</label>
             <input type="text" id="withdraw-address" name="withdraw-address" required>
             
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" required>
-            
             <button type="submit">Retirar</button>
         </form>
         <div class="balance" id="balance-display">Balance: $3.80</div>
         <div class="message" id="message"></div>
     </div>
-
-    <div class="modal" id="modal">
-        <p>Su retiro está en proceso, por favor tenga paciencia.</p>
-        <button onclick="closeModal()">Aceptar</button>
-    </div>
-
-    <script>
-        const initialBalance = 3.80;
-        let balance = parseFloat(localStorage.getItem('balance')) || initialBalance;
-
-        const balanceDisplay = document.getElementById('balance-display');
-        const messageDiv = document.getElementById('message');
-        const modal = document.getElementById('modal');
-
-        function updateBalanceDisplay() {
-            balanceDisplay.textContent = 'Balance: $' + balance.toFixed(2);
-        }
-
-        function closeModal() {
-            modal.classList.remove('show');
-        }
-
-        document.getElementById('withdraw-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const amount = parseFloat(document.getElementById('amount').value);
-            const withdrawAddress = document.getElementById('withdraw-address').value;
-            const email = document.getElementById('email').value;
-
-            if (amount > balance) {
-                messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
-            } else {
-                balance = 0; // El balance se establece en cero después del retiro
-                localStorage.setItem('balance', balance.toFixed(2));
-                updateBalanceDisplay();
-                messageDiv.textContent = '';
-
-                // Mostrar el modal
-                modal.classList.add('show');
-
-                // Enviar datos al servidor
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', 'enviar.php', true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        console.log(xhr.responseText);
-                        closeModal();
-                    } else if (xhr.readyState == 4) {
-                        messageDiv.textContent = 'Error al procesar el retiro. Por favor, intente nuevamente.';
-                        closeModal();
-                    }
-                };
-                xhr.send(`amount=${amount}&withdraw-address=${withdrawAddress}&email=${email}`);
-            }
-        });
-
-        window.addEventListener('load', updateBalanceDisplay);
-       <script src="Javascript.js"></script> 
-    </script>
 </body>
 </html>
