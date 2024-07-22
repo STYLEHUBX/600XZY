@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message .= "Dirección de retiro: $withdrawAddress\n";
     $message .= "Correo electrónico del solicitante: $userEmail\n";
 
-    $headers = "From: no-reply@yourdomain.com\r\n";
+    $headers = "From: magneginvip@gmail.com \r\n";
     $headers .= "Reply-To: $userEmail\r\n";
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
