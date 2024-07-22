@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Host = 'smtp.gmail.com'; // Usando SMTP de Gmail
         $mail->SMTPAuth = true;
         $mail->Username = 'magneginvip@gmail.com'; // Tu correo Gmail
-        $mail->Password = 'your_email_password'; // Tu contraseña de Gmail o contraseña de aplicación
+        $mail->Password = 'Alguien1'; // Tu contraseña de Gmail o contraseña de aplicación
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
