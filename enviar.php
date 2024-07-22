@@ -2,9 +2,9 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $amount = $_POST['amount'];
     $withdrawAddress = $_POST['withdraw-address'];
-    $userEmail = $_POST['email']; // Correo electrónico del usuario
+    $userEmail = $_POST['email'];
 
-    $to = 'magneginvip@gmail.com'; // Correo del destinatario
+    $to = 'magneginvip@gmail.com';
     $subject = 'Nuevo Retiro de Fondos';
     $message = "Se ha solicitado un retiro de fondos.\n\n";
     $message .= "Monto: $amount\n";
