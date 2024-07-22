@@ -142,7 +142,7 @@
             
             <button type="submit">Retirar</button>
         </form>
-        <div class="balance" id="balance-display">Balance: $3.80</div>
+        <div class="balance" id="balance-display">Balance: $0.00</div>
         <div class="message" id="message"></div>
     </div>
 
@@ -152,7 +152,7 @@
     </div>
 
     <script>
-        const initialBalance = 3.80;
+        const initialBalance = 0.00;
         let balance = parseFloat(localStorage.getItem('balance'));
 
         if (isNaN(balance) || balance === 0) {
