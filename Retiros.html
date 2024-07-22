@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RetirosUsers</title>
+    <title>Retiro</title>
     <style>
         /* Estilos CSS */
         body {
@@ -102,11 +102,13 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.9);
-            padding: 20px;
+            padding: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             text-align: center;
             color: #fff;
+            width: 60%;
+            max-width: 600px;
         }
         .modal.show {
             display: block;
@@ -151,7 +153,12 @@
 
     <script>
         const initialBalance = 3.80;
-        let balance = parseFloat(localStorage.getItem('balance')) || initialBalance;
+        let balance = parseFloat(localStorage.getItem('balance'));
+
+        if (isNaN(balance)) {
+            balance = initialBalance;
+            localStorage.setItem('balance', balance.toFixed(2));
+        }
 
         const balanceDisplay = document.getElementById('balance-display');
         const messageDiv = document.getElementById('message');
