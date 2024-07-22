@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Host = 'smtp.gmail.com'; // Usando SMTP de Gmail
         $mail->SMTPAuth = true;
         $mail->Username = 'magneginvip@gmail.com'; // Tu correo Gmail
-        $mail->Password = 'Alguien1'; // Tu contraseña de Gmail o contraseña de aplicación
+        $mail->Password = 'your_email_password'; // Tu contraseña de Gmail o contraseña de aplicación
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
@@ -40,9 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Envía el correo
         $mail->send();
-        echo 'El mensaje ha sido enviado';
+        echo 'El correo ha sido enviado exitosamente';
     } catch (Exception $e) {
-        echo "El mensaje no pudo ser enviado. Mailer Error: {$mail->ErrorInfo}";
+        echo "Error al enviar el correo: {$mail->ErrorInfo}";
     }
+} else {
+    echo "Método no permitido";
 }
-?>
