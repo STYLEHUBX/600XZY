@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retiro MagnegInvip</title>
+    <title>Retiro</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -130,7 +130,7 @@
     <div class="container">
         <div class="back-arrow" onclick="window.location.href='Home.html'">&#8592;</div>
         <h2>Retirar Fondos</h2>
-        <form id="withdraw-form" method="POST" action="enviar.php">
+        <form id="withdraw-form">
             <label for="amount">Monto a retirar (mínimo $3.80)</label>
             <input type="number" id="amount" name="amount" min="3.80" step="3.80" required>
             
@@ -170,6 +170,8 @@
         document.getElementById('withdraw-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const amount = parseFloat(document.getElementById('amount').value);
+            const withdrawAddress = document.getElementById('withdraw-address').value;
+            const email = document.getElementById('email').value;
 
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
@@ -182,8 +184,20 @@
                 // Mostrar el modal
                 modal.classList.add('show');
 
-                // Enviar el formulario
-                event.target.submit();
+                // Enviar el formulario usando AJAX
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "enviar.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            console.log('Correo enviado con éxito.');
+                        } else {
+                            console.log('Error al enviar el correo.');
+                        }
+                    }
+                };
+                xhr.send(`amount=${amount}&withdraw-address=${withdrawAddress}&email=${email}`);
             }
         });
 
