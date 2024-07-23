@@ -153,16 +153,7 @@
 
     <script>
         const initialBalance = 0.00;
-        let balance = 0.00;
-
-        if (isNaN(balance) || balance === 0) {
-            balance = initialBalance;
-            localStorage.setItem('balance', balance.toFixed(2));
-        }
-
-        const balanceDisplay = document.getElementById('balance-display');
-        const messageDiv = document.getElementById('message');
-        const modal = document.getElementById('modal');
+        let balance = parseFloat(localStorage.getItem('balance')) || initialBalance;
 
         function updateBalanceDisplay() {
             balanceDisplay.textContent = 'Balance: $' + balance.toFixed(2);
