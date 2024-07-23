@@ -155,6 +155,10 @@
         const initialBalance = 7.00;
         let balance = parseFloat(localStorage.getItem('balance')) || initialBalance;
 
+        const balanceDisplay = document.getElementById('balance-display');
+        const messageDiv = document.getElementById('message');
+        const modal = document.getElementById('modal');
+
         function updateBalanceDisplay() {
             balanceDisplay.textContent = 'Balance: $' + balance.toFixed(2);
         }
