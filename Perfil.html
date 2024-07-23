@@ -138,10 +138,10 @@
         function actualizarRecargas() {
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
-                recargas = 0.00;
-                localStorage.setItem("0.00", recargas);
+                recargas = 7.00;
+                localStorage.setItem("7.00", recargas);
             }
-            document.getElementById("recargas").innerText = `$${parseFloat(0.00).toFixed(2)}`;
+            document.getElementById("recargas").innerText = `$${parseFloat(7.00).toFixed(2)}`;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
