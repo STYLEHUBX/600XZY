@@ -127,21 +127,21 @@
 
     <script>
         function actualizarBalance() {
-            let saldo = localStorage.getItem("0.00");
+            let saldo = localStorage.getItem("7.00");
             if (saldo === null) {
-                saldo = 0.00;
+                saldo = 7.00;
                 localStorage.setItem("saldo", saldo);
             }
-            document.getElementById("balance").innerText = `$${parseFloat(0.00).toFixed(2)}`;
+            document.getElementById("balance").innerText = `$${parseFloat(7.00).toFixed(2)}`;
         }
 
         function actualizarRecargas() {
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
-                recargas = 0.00;
-                localStorage.setItem("0.00", recargas);
+                recargas = 14.00;
+                localStorage.setItem("14.00", recargas);
             }
-            document.getElementById("recargas").innerText = `$${parseFloat(0.00).toFixed(2)}`;
+            document.getElementById("recargas").innerText = `$${parseFloat(14.00).toFixed(2)}`;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
