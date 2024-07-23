@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retiro</title>
+    <title>Retiros</title>
     <style>
         /* Estilos CSS */
         body {
@@ -176,7 +176,11 @@
             if (amount > balance) {
                 messageDiv.textContent = 'Saldo insuficiente para realizar el retiro.';
             } else {
-                balance = 0; // El balance se establece en cero después del retiro
+                if (amount === balance) {
+                    balance = 0; // El balance se establece en cero después del retiro completo
+                } else {
+                    balance -= amount;
+                }
                 localStorage.setItem('balance', balance.toFixed(2));
                 updateBalanceDisplay();
                 messageDiv.textContent = '';
