@@ -175,7 +175,11 @@
             }
         }
 
-        document.addEventListener("DOMContentLoaded", checkTaskAvailability);
+        // Mostrar la tarea inmediatamente al cargar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            showTask();
+            checkTaskAvailability();
+        });
     </script>
 </body>
 </html>
