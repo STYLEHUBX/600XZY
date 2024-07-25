@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tareas Diarias</title>
+    <title>Tareas Vip</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -137,7 +137,7 @@
             let saldo = localStorage.getItem("saldo") || 0;
             let nuevoSaldo = parseFloat(saldo) + taskReward;
             localStorage.setItem("saldo", nuevoSaldo);
-            startTimer();
+            startTimer(); // Comenzar el temporizador después de completar la tarea
         }
 
         function startTimer() {
