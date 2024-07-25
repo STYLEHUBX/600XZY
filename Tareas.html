@@ -114,7 +114,7 @@
         function showTask() {
             taskContainer.innerHTML = `
                 <div class="task-box">
-                    <img src="imagen-tarea.jpg" alt="Tarea">
+                    <img src="https://github.com/user-attachments/assets/53c09324-d13a-4d59-af94-3d06881beeeb" alt="Tarea">
                     <p>[REFILL] PILOT G2 Gel Pen 0.5mm / 0.7mm / 1.0mm</p>
                     <p>Precio: 1.00</p>
                     <p>Ingreso: 0.80</p>
@@ -124,7 +124,7 @@
         }
 
         function hideTask() {
-            taskContainer.innerHTML = 'https://github.com/user-attachments/assets/53c09324-d13a-4d59-af94-3d06881beeeb';
+            taskContainer.innerHTML = '';
         }
 
         function completarTarea() {
@@ -133,7 +133,7 @@
             localStorage.setItem(taskKey, "true");
             // Actualizar el saldo en localStorage
             let saldo = localStorage.getItem("saldo") || 0;
-            let nuevoSaldo = parseFloat(saldo) + 1.00;
+            let nuevoSaldo = parseFloat(saldo) + 0.80;
             localStorage.setItem("saldo", nuevoSaldo);
         }
 
