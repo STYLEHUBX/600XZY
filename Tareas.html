@@ -79,7 +79,7 @@
     <div id="container">
         <h3>TAREAS 600XYZ</h3>
         <div id="task-container"></div>
-        <div class="timer" id="timer"></div>
+        <div class="timer" id="timer" style="display: none;"></div>
         <p>Para que te salgan más tareas adquiera un VIP</p>
     </div>
 
@@ -148,7 +148,7 @@
             const countdown = setInterval(() => {
                 if (timeRemaining <= 0) {
                     clearInterval(countdown);
-                    showTask();
+                    showTask(); // Mostrar la tarea de nuevo después de 24 horas
                     timerElement.style.display = 'none';
                 } else {
                     const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
