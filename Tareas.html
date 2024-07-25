@@ -140,18 +140,6 @@
             startTimer();
         }
 
-        function checkTaskAvailability() {
-            const lastCompletedTime = localStorage.getItem(lastCompletedKey);
-            const now = new Date().getTime();
-
-            if (!lastCompletedTime || (now - lastCompletedTime) > oneDay) {
-                showTask();
-                timerElement.style.display = 'none';
-            } else {
-                startTimer();
-            }
-        }
-
         function startTimer() {
             const lastCompletedTime = parseInt(localStorage.getItem(lastCompletedKey));
             const now = new Date().getTime();
@@ -173,6 +161,18 @@
                     timeRemaining -= 1000;
                 }
             }, 1000);
+        }
+
+        function checkTaskAvailability() {
+            const lastCompletedTime = localStorage.getItem(lastCompletedKey);
+            const now = new Date().getTime();
+
+            if (!lastCompletedTime || (now - lastCompletedTime) > oneDay) {
+                showTask();
+                timerElement.style.display = 'none';
+            } else {
+                startTimer();
+            }
         }
 
         document.addEventListener("DOMContentLoaded", checkTaskAvailability);
