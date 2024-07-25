@@ -43,7 +43,7 @@
             padding: 5px;
             border-radius: 5px;
             width: 100%;
-            font-size: 14px; /* Tamaño de fuente reducido */
+            font-size: 14px;
             cursor: pointer;
         }
         .timer {
@@ -55,9 +55,8 @@
             justify-content: space-around;
             width: 100%;
             position: fixed;
-            bottom: 0; /* Ajuste para mover la barra hacia abajo */
-            
-            padding: 5px 0; /* Altura reducida */
+            bottom: 0;
+            padding: 5px 0;
         }
         .nav-item {
             display: flex;
@@ -66,12 +65,12 @@
             text-align: center;
         }
         .nav-bar img {
-            width: 30px; /* Ajuste del tamaño de los iconos */
-            height: 30px; /* Ajuste del tamaño de los iconos */
+            width: 30px;
+            height: 30px;
             cursor: pointer;
         }
         .nav-bar span {
-            font-size: 10px; /* Tamaño de letra más pequeño */
+            font-size: 10px;
             margin-top: 3px;
         }
     </style>
@@ -81,7 +80,7 @@
         <h3>TAREAS MagnegInvip</h3>
         <div class="timer" id="timer">24:00:00</div>
         <div id="task-container"></div>
-        <p>Para Que Te Salgan Más Tareas Adquiera Un Vip</p>
+        <p>Para que te salgan más tareas adquiera un VIP</p>
     </div>
 
     <div class="nav-bar">
@@ -110,8 +109,11 @@
     <script>
         const taskContainer = document.getElementById("task-container");
         const timerElement = document.getElementById("timer");
-        const countdownTime = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+        const countdownTime = 24 * 60 * 60 * 1000; // 24 horas en milisegundos
+        const taskKey = "taskCompleted";
+
         let endTime = localStorage.getItem("taskEndTime");
+        const taskCompleted = localStorage.getItem(taskKey) === "true";
 
         if (!endTime) {
             endTime = new Date().getTime() + countdownTime;
@@ -127,7 +129,11 @@
                 localStorage.removeItem("taskEndTime");
                 endTime = new Date().getTime() + countdownTime;
                 localStorage.setItem("taskEndTime", endTime);
-                showTask();
+                if (!taskCompleted) {
+                    showTask();
+                } else {
+                    hideTask();
+                }
             } else {
                 hideTask();
             }
@@ -158,6 +164,7 @@
         function completarTarea() {
             alert("Tarea completada");
             hideTask();
+            localStorage.setItem(taskKey, "true");
             // Actualizar el saldo en localStorage
             let saldo = localStorage.getItem("saldo") || 0;
             let nuevoSaldo = parseFloat(saldo) + 1.00;
