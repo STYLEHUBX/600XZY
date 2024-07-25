@@ -109,7 +109,6 @@
     <script>
         const taskContainer = document.getElementById("task-container");
         const timerElement = document.getElementById("timer");
-        const taskKey = "taskCompleted";
         const lastCompletedKey = "lastCompletedTime";
         const taskReward = 0.80; // Recompensa por completar la tarea
         const oneDay = 24 * 60 * 60 * 1000; // Milisegundos en un día
@@ -133,7 +132,6 @@
         function completarTarea() {
             alert("Tarea completada");
             hideTask();
-            localStorage.setItem(taskKey, "true");
             localStorage.setItem(lastCompletedKey, new Date().getTime());
             // Actualizar el saldo en localStorage
             let saldo = localStorage.getItem("saldo") || 0;
