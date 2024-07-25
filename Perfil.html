@@ -15,13 +15,24 @@
             align-items: center;
         }
         #container {
-            background-color: ;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
             border-radius: 10px;
             padding: 20px;
             width: 90%;
             max-width: 400px;
             margin-top: 20px;
             text-align: center;
+            position: relative;
+        }
+        .vip-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: gold;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
         }
         .balance-box, .recarga-box {
             background-color: #2C2C2C;
@@ -81,6 +92,7 @@
 </head>
 <body>
     <div id="container">
+        <div class="vip-tag">VIP-0.0.0</div>
         <h3>Perfil</h3>
         <div class="balance-box">
             <h4>Balance:</h4>
@@ -127,21 +139,21 @@
 
     <script>
         function actualizarBalance() {
-            let saldo = localStorage.getItem("0.00");
+            let saldo = localStorage.getItem("saldo");
             if (saldo === null) {
                 saldo = 0.00;
                 localStorage.setItem("saldo", saldo);
             }
-            document.getElementById("balance").innerText = `$${parseFloat(0.00).toFixed(2)}`;
+            document.getElementById("balance").innerText = `$${parseFloat(saldo).toFixed(2)}`;
         }
 
         function actualizarRecargas() {
             let recargas = localStorage.getItem("recargas");
             if (recargas === null) {
                 recargas = 0.00;
-                localStorage.setItem("0.00", recargas);
+                localStorage.setItem("recargas", recargas);
             }
-            document.getElementById("recargas").innerText = `$${parseFloat(0.00).toFixed(2)}`;
+            document.getElementById("recargas").innerText = `$${parseFloat(recargas).toFixed(2)}`;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
