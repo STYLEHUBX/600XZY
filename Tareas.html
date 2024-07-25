@@ -79,6 +79,7 @@
     <div id="container">
         <h3>TAREAS 600XYZ</h3>
         <div id="task-container"></div>
+        <div class="timer" id="timer"></div>
         <p>Para que te salgan más tareas adquiera un VIP</p>
     </div>
 
@@ -107,9 +108,11 @@
 
     <script>
         const taskContainer = document.getElementById("task-container");
+        const timerElement = document.getElementById("timer");
         const taskKey = "taskCompleted";
         const lastCompletedKey = "lastCompletedTime";
         const taskReward = 0.80; // Recompensa por completar la tarea
+        const oneDay = 24 * 60 * 60 * 1000; // Milisegundos en un día
 
         function showTask() {
             taskContainer.innerHTML = `
@@ -136,18 +139,42 @@
             let saldo = localStorage.getItem("saldo") || 0;
             let nuevoSaldo = parseFloat(saldo) + taskReward;
             localStorage.setItem("saldo", nuevoSaldo);
+            startTimer();
         }
 
         function checkTaskAvailability() {
             const lastCompletedTime = localStorage.getItem(lastCompletedKey);
             const now = new Date().getTime();
-            const oneDay = 24 * 60 * 60 * 1000; // Milisegundos en un día
 
             if (!lastCompletedTime || (now - lastCompletedTime) > oneDay) {
                 showTask();
+                timerElement.style.display = 'none';
             } else {
                 hideTask();
+                startTimer();
             }
+        }
+
+        function startTimer() {
+            const lastCompletedTime = localStorage.getItem(lastCompletedKey);
+            const now = new Date().getTime();
+            const timeRemaining = oneDay - (now - lastCompletedTime);
+
+            const countdown = setInterval(() => {
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                timerElement.innerHTML = `Próxima tarea en: ${hours}h ${minutes}m ${seconds}s`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(countdown);
+                    showTask();
+                    timerElement.style.display = 'none';
+                } else {
+                    timeRemaining -= 1000;
+                }
+            }, 1000);
         }
 
         checkTaskAvailability();
