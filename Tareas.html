@@ -237,12 +237,10 @@
                 localStorage.setItem('lastQuantifyTime', now.toString());
                 localStorage.setItem('quantifyCount', newCount.toString());
                 updateCountdown();
-            }, 3000); // Simulación de una acción que toma 3 segundos
-        }
-
-        // Inicializa el estado al cargar
+            }, 3000); // Simulación de una acción que toma
+        // Inicializa la cuenta regresiva al cargar la página
         updateCountdown();
-        setInterval(updateCountdown, 1000); // Actualiza el cronómetro cada segundo
+        setInterval(updateCountdown, 1000); // Actualiza la cuenta regresiva cada segundo
     </script>
 </body>
 </html>
