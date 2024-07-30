@@ -112,6 +112,9 @@
             margin: 5px 0 0 0;
             font-size: 10px;
         }
+        #countdown {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -168,7 +171,7 @@
     </div>
 
     <script>
-        const quantificationButton = document.getElementById('quantifyButton');
+        const quantifyButton = document.getElementById('quantifyButton');
         const statusMessageElement = document.getElementById('statusMessage');
         const countdownElement = document.getElementById('countdown');
 
@@ -188,7 +191,8 @@
             const remainingTime = getRemainingTime();
             if (remainingTime <= 0) {
                 countdownElement.innerText = '¡Es hora de cuantificar!';
-                quantificationButton.disabled = false;
+                countdownElement.style.display = 'none';
+                quantifyButton.disabled = false;
                 return;
             }
 
@@ -197,25 +201,39 @@
             const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
 
             countdownElement.innerText = `Tiempo restante: ${hours}h ${minutes}m ${seconds}s`;
-            quantificationButton.disabled = true;
+            countdownElement.style.display = 'block';
+            quantifyButton.disabled = true;
         }
 
         function quantify() {
             const now = Date.now();
             const lastQuantifyTime = parseInt(localStorage.getItem('lastQuantifyTime') || '0', 10);
+            const quantifyCount = parseInt(localStorage.getItem('quantifyCount') || '0', 10);
             const oneDay = 24 * 60 * 60 * 1000; // Milisegundos en un día
 
-            if (now - lastQuantifyTime < oneDay) {
+            if (now - lastQuantifyTime >= oneDay) {
+                localStorage.setItem('quantifyCount', '0'); // Reset the count for a new day
+            }
+
+            if (quantifyCount >= 2) {
+                statusMessageElement.innerText = 'Ya has realizado las 2 cuantificaciones diarias.';
+                updateCountdown();
+                return;
+            }
+
+            if (now - lastQuantifyTime < oneDay && quantifyCount >= 2) {
                 statusMessageElement.innerText = 'Ya has cuantificado hoy. Espera hasta el siguiente ciclo.';
                 return;
             }
 
             statusMessageElement.innerText = 'Cuantificando...';
-            quantificationButton.disabled = true;
+            quantifyButton.disabled = true;
 
             setTimeout(() => {
                 statusMessageElement.innerText = 'Cuantificación completada.';
+                const newCount = quantifyCount + 1;
                 localStorage.setItem('lastQuantifyTime', now.toString());
+                localStorage.setItem('quantifyCount', newCount.toString());
                 updateCountdown();
             }, 3000); // Simulación de una acción que toma 3 segundos
         }
@@ -224,6 +242,7 @@
 
         // Inicializa el estado al cargar la página
         updateCountdown();
+
     </script>
 </body>
 </html>
