@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mineria Profesional</title>
+    <title>Quantificación Profesional</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -221,11 +221,6 @@
                 return;
             }
 
-            if (now - lastQuantifyTime < oneDay && quantifyCount >= 2) {
-                statusMessageElement.innerText = 'Ya has cuantificado hoy. Espera hasta el siguiente ciclo.';
-                return;
-            }
-
             statusMessageElement.innerText = 'Cuantificando...';
             quantifyButton.disabled = true;
 
@@ -240,7 +235,7 @@
 
         setInterval(updateCountdown, 1000); // Actualiza el cronómetro cada segundo
 
-        // Inicializa el estado al cargar la página
+        // Inicializa el estado al cargar
         updateCountdown();
 
     </script>
