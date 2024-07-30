@@ -29,14 +29,19 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            background: radial-gradient(circle at 50% 50%, #007bff, #001f3f);
+            background: conic-gradient(#007bff, #00aaff, #00ddff, #007bff);
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0 auto 20px auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-        .circle button {
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .button-container button {
             padding: 10px 20px;
             font-size: 16px;
             color: #fff;
@@ -46,7 +51,7 @@
             cursor: pointer;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-        .circle button:hover {
+        .button-container button:hover {
             background-color: #218838;
         }
         .info {
@@ -92,7 +97,8 @@
 <body>
     <div class="container">
         <h1>Minería Profesional</h1>
-        <div class="circle">
+        <div class="circle"></div>
+        <div class="button-container">
             <button onclick="quantify()">Cuantificar</button>
         </div>
         <p>Para cuantificar, necesitas comprar el VIP.</p>
