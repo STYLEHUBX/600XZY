@@ -8,14 +8,12 @@
         body {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
             background-color: #001f3f;
             font-family: 'Arial', sans-serif;
             color: #fff;
             margin: 0;
-            overflow: hidden;
+            overflow-x: hidden; /* Previene el desplazamiento horizontal */
         }
         .container {
             text-align: center;
@@ -25,7 +23,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             width: 90%;
             max-width: 350px;
-            margin-bottom: 60px; /* Espacio para la barra de navegación */
+            margin: 100px 0; /* Ajusta el espacio superior e inferior */
         }
         .circle {
             position: relative;
@@ -78,7 +76,7 @@
             width: 100%;
             display: flex;
             justify-content: space-around;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0); /* Fondo transparente */
             padding: 10px;
             font-size: 18px;
             z-index: 1000; /* Para asegurarse de que la barra esté sobre el contenido */
