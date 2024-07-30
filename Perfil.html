@@ -104,7 +104,7 @@
         <h3>Perfil</h3>
         <div class="balance-box">
             <h4>Balance:</h4>
-            <p id="balance">$0.80</p>
+            <p id="balance">$0.00</p>
         </div>
         <div class="recarga-box">
             <h4>Recargas:</h4>
@@ -146,18 +146,18 @@
     </div>
 
     <script>
-        function inicializarBalance() {
-            localStorage.setItem("saldo", "0.80");
-            document.getElementById("balance").innerText = "$0.80";
+        function actualizarBalance() {
+            const balance = localStorage.getItem('balance') || '0.00';
+            document.getElementById('balance').innerText = `$${parseFloat(balance).toFixed(2)}`;
         }
 
         function inicializarRecargas() {
-            localStorage.setItem("recargas", "5.00");
-            document.getElementById("recargas").innerText = "$5.00";
+            const recargas = localStorage.getItem('recargas') || '0.00';
+            document.getElementById('recargas').innerText = `$${parseFloat(recargas).toFixed(2)}`;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            inicializarBalance();
+            actualizarBalance();
             inicializarRecargas();
         });
     </script>
