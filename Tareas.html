@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantificacion Profesional</title>
+    <title>Minería Profesional</title>
     <style>
         body {
             display: flex;
@@ -123,7 +123,7 @@
         </div>
         <div class="button-container">
             <p>Ganancias diarias 25%, 30%</p>
-            <button id="quantifyBtn">Cuantificar</button>
+            <button id="quantifyBtn" onclick="quantify()">Cuantificar</button>
             <div class="message" id="message">Cuantificando, espera paciente...</div>
         </div>
         <p>Para cuantificar, necesitas comprar el VIP.</p>
@@ -178,9 +178,9 @@
         function updateBalance(amount) {
             // Lógica para actualizar el balance en Perfil.html
             // Este código es un ejemplo; en un entorno real, deberías utilizar almacenamiento en servidor o local para persistir los datos
-            let balance = localStorage.getItem('balance') || 0;
-            balance = parseFloat(balance) + amount;
-            localStorage.setItem('balance', balance);
+            let balance = parseFloat(localStorage.getItem('balance')) || 0;
+            balance += amount;
+            localStorage.setItem('balance', balance.toFixed(2));
         }
 
         function quantify() {
@@ -214,7 +214,7 @@
                 quantifyCount++;
                 localStorage.setItem('lastQuantifyDate', today.getTime());
                 updateBalance(quantifyAmount);
-                alert(`Cuantificación completa. Has ganado $${quantifyAmount}.`);
+                alert(`Cuantificación completa. Has ganado $${quantifyAmount.toFixed(2)}.`);
             }, cooldown);
         }
 
@@ -226,7 +226,7 @@
                 const today = new Date();
                 const lastQuantify = new Date(lastQuantifyTime);
                 if (lastQuantify.toDateString() === today.toDateString()) {
-                    quantifyCount = localStorage.getItem('quantifyCount') || 0;
+                    quantifyCount = parseInt(localStorage.getItem('quantifyCount')) || 0;
                 }
             }
         };
