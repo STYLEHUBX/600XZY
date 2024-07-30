@@ -3,246 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantificación Profesional</title>
+    <title>VIP Levels</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #001f3f;
-            color: #fff;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://github.com/user-attachments/assets/2a40f9c6-53ba-4868-9631-36fb081097b2');
+            color: white;
             margin: 0;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Evita desplazamiento horizontal */
         }
-        .container {
-            text-align: center;
-            background-color: #003366;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-            width: 90%;
-            max-width: 400px;
-            margin-top: 60px; /* Espacio para la barra de navegación */
-        }
-        .circle {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: conic-gradient(#007bff, #00aaff, #00ddff, #007bff);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-            overflow: hidden;
-        }
-        .circle img {
-            position: absolute;
+
+        .content {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 400px; /* Tarjetas más anchas */
+            box-sizing: border-box;
+            padding: 0 20px; /* Espacio en los lados */
         }
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .button-container p {
-            margin: 10px 0;
-            font-size: 16px;
-        }
-        .button-container button {
-            padding: 15px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #28a745;
+
+        .back-button {
+            background-color: #0D47A1;
+            color: white;
             border: none;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
         }
-        .button-container button:hover {
-            background-color: #218838;
-            transform: scale(1.05);
+
+        .back-button a {
+            color: white;
+            text-decoration: none;
         }
-        .button-container button:disabled {
-            background-color: #6c757d;
-            cursor: not-allowed;
+
+        .back-button:hover {
+            background-color: #007BB5;
         }
-        .info {
-            margin-top: 20px;
-            font-size: 16px;
+
+        .vip-card {
+            background-image: url('https://github.com/user-attachments/assets/3bb2a5dc-74d0-4f38-b08b-611531074d1b'); /* Imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            width: 80%;
+            margin: 30px 0; /* Aumenta el margen para separarlas más */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            color: white; /* Asegura que el texto sea visible sobre el fondo */
         }
-        .status-message {
-            margin-top: 10px;
-            font-size: 16px;
-            color: #ffdd00;
+
+        .vip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
-        .nav-bar {
-            position: fixed;
-            bottom: 0;
+
+        .vip-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .vip-header img {
+            width: 50px;
+            margin-right: 15px;
+        }
+
+        .vip-level {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .vip-details {
+            text-align: left;
+        }
+
+        .vip-details p {
+            margin: 5px 0;
+        }
+
+        .vip-footer {
             width: 100%;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .vip-footer button {
+            background-color: #00b3b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .vip-footer button:hover {
+            background-color: #007BB5;
+        }
+
+        .vip-footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-bar {
             display: flex;
             justify-content: space-around;
-            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro y semitransparente */
-            padding: 15px;
-            font-size: 14px;
-            z-index: 1000; /* Para asegurarse de que la barra esté sobre el contenido */
+            width: 100%;
+            padding: 5px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            box-sizing: border-box;
+            z-index: 1000;
         }
-        .nav-bar div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+
         .nav-bar a {
-            color: #fff;
+            color: white;
+            text-align: center;
             text-decoration: none;
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: background-color 0.3s ease, border-radius 0.3s ease;
+            justify-content: flex-end;
+            height: 40px;
         }
+
         .nav-bar img {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
         }
-        .nav-bar a:hover {
-            background-color: #0059b3;
-            border-radius: 8px;
-        }
+
         .nav-bar p {
-            margin: 5px 0 0 0;
-            font-size: 12px;
+            margin: 0;
+            font-size: 0.7em;
         }
-        #countdown {
-            margin-top: 20px;
-            font-size: 18px;
+
+        .spacer {
+            height: 50px;
+        }
+
+        /* Estilos para evitar desplazamiento lateral */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .vip-card img.extra-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        /* Nuevo estilo para el texto VIP-0.0.1 */
+        .vip-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: gold;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Quantificación Profesional VIP</h1>
-        <div class="circle">
-            <img src="https://github.com/user-attachments/assets/764229cd-a7ce-43e1-8400-b7ebb6c7ae84" alt="Imagen 2">
+    <div class="content">
+        <button class="back-button"><a href="Home.html">⬅️ Volver</a></button>
+
+        <!-- VIP1 Card -->
+        <div class="vip-card">
+            <div class="vip-tag">VIP-0.0.0</div>
+            <div class="vip-header">
+                
+            </div>
+            <div class="vip-details">
+                <p>Interés simple: 1.00 USDT</p>
+                <p>Ganancia diaria: 0.20 USDT</p>
+                <p>Beneficio total: 73.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="">Desbloqueado</a></button>
+            </div>
         </div>
-        <div class="button-container">
-            <p>Ganancias diarias 25%, 30%</p>
-            <button id="quantifyButton" onclick="quantify()">Cuantificar</button>
-            <div id="statusMessage" class="status-message"></div>
-            <div id="countdown" class="status-message"></div>
+
+        <!-- VIP2 Card -->
+        <div class="vip-card">
+            <div class="vip-tag">VIP-0.0.1</div>
+            <div class="vip-header">
+                
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 10.00 USDT</p>
+                <p>Ganancia diaria: 2.50 USDT</p>
+                <p>Beneficio total: 3,650.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 10.00 USDT</a></button>
+            </div>
         </div>
-        <p>Para cuantificar, necesitas comprar el VIP.</p>
-        <div class="info">
-            <h2>¿Cómo funciona?</h2>
-            <p>La minería profesional te permite obtener los mejores recursos utilizando tecnología avanzada.</p>
-            <p>Con la suscripción VIP, obtendrás acceso a herramientas exclusivas que mejorarán tu eficiencia y rendimiento.</p>
+
+        <!-- VIP3 Card -->
+        <div class="vip-card">
+            <div class="vip-tag">VIP-0.0.2</div>
+            <div class="vip-header">
+                
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 14.00 USDT</p>
+                <p>Ganancia diaria: 4.5 USDT</p>
+                <p>Beneficio total: 5,110.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 14.00 USDT</a></button>
+            </div>
         </div>
+
+        <!-- VIP4 Card -->
+        <div class="vip-card">
+            <div class="vip-tag">VIP-0.0.3</div>
+            <div class="vip-header">
+                
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 21.00 USDT</p>
+                <p>Ganancia diaria: 7.5 USDT</p>
+                <p>Beneficio total: 7,650.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 21.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP5 Card -->
+        <div class="vip-card">
+            <div class="vip-tag">VIP-0.0.4</div>
+            <div class="vip-header">
+                
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 28.00 USDT</p>
+                <p>Ganancia diaria: 9.00 USDT</p>
+                <p>Beneficio total: 10,220.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 28.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP6 Card -->
+        <div class="vip-card">
+            <div class="vip-tag">VIP-0.0.5</div>
+            <div class="vip-header">
+                
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 35.00 USDT</p>
+                <p>Ganancia diaria: 12.5 USDT</p>
+                <p>Beneficio total: 12,775.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 35.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP7 Card -->
+        <div class="vip-card">
+            <div class="vip-tag">VIP-0.0.6</div>
+            <div class="vip-header">
+                
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 42.00 USDT</p>
+                <p>Ganancia diaria: 15.00 USDT</p>
+                <p>Beneficio total: 15,330.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 42.00 USDT</a></button>
+            </div>
+        </div>
+
+        <!-- VIP8 Card -->
+        <div class="vip-card">
+            <div class="vip-tag">VIP-0.0.7</div>
+            <div class="vip-header">
+                
+            </div>
+            <div class="vip-details">
+                <p>Tareas diarias: 1</p>
+                <p>Interés simple: 50.00 USDT</p>
+                <p>Ganancia diaria: 20.00 USDT</p>
+                <p>Beneficio total: 18,250.00 USDT</p>
+            </div>
+            <div class="vip-footer">
+                <button><a href="Recargas.html">Desbloquear ahora por 50.00 USDT</a></button>
+            </div>
+        </div>
+
+        <div class="spacer"></div> <!-- Añade espacio al final para la barra de navegación -->
     </div>
 
+    <!-- Navigation Bar -->
     <div class="nav-bar">
-        <div>
-            <a href="Home.html">
-                <img src="Home-01.png" alt="Hogar">
-                <p>HOME</p>
-            </a>
-        </div>
-        <div>
-            <a href="Tareas.html">
-                <img src="xd.jpg" alt="Tarea">
-                <p>QUANTIFICAR</p>
-            </a>
-        </div>
-        <div>
-            <a href="Equipo.html">
-                <img src="Equipo.png" alt="Equipo">
-                <p>EQUIPO</p>
-            </a>
-        </div>    
-        <div>
-            <a href="Viptask.html">
-                <img src="Vip-icono (1).png" alt="VIP">
-                <p>VIP</p>
-            </a>
-        </div>
-        <div>
-            <a href="Perfil.html">
-                <img src="Bank_1.png" alt="Mi">
-                <p>CUENTA</p>
-            </a>
-        </div>
+        <a href="Home.html"><img src="Home-01.png" alt="Icono 1"><p>HOME</p></a>
+        <a href="Tareas.html"><img src="xd.jpg" alt="Icono 2"><p>QUANTIFICACION</p></a>
+        <a href="Equipo.html"><img src="Equipo.png" alt="Icono 3"><p>EQUIPO</p></a>
+        <a href="Viptask.html"><img src="Vip-icono (1).png" alt="Icono 4"><p>VIP</p></a>
+        <a href="Perfil.html"><img src="Bank_1.png" alt="Icono 5"><p>CUENTA</p></a>
     </div>
-
-    <script>
-        const quantifyButton = document.getElementById('quantifyButton');
-        const statusMessageElement = document.getElementById('statusMessage');
-        const countdownElement = document.getElementById('countdown');
-
-        function getRemainingTime() {
-            const now = new Date();
-            const resetTime = new Date();
-            resetTime.setHours(23, 0, 0, 0); // 11:00 PM
-
-            if (now.getTime() > resetTime.getTime()) {
-                resetTime.setDate(resetTime.getDate() + 1); // Mueve al día siguiente
-            }
-
-            return resetTime.getTime() - now.getTime();
-        }
-
-        function updateCountdown() {
-            const remainingTime = getRemainingTime();
-            if (remainingTime <= 0) {
-                countdownElement.innerText = '¡Es hora de cuantificar!';
-                countdownElement.style.display = 'none';
-                quantifyButton.disabled = false;
-                return;
-            }
-
-            const hours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-            const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
-            const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
-
-            countdownElement.innerText = `Tiempo restante: ${hours}h ${minutes}m ${seconds}s`;
-            countdownElement.style.display = 'block';
-            quantifyButton.disabled = true;
-        }
-
-        function quantify() {
-            const now = Date.now();
-            const lastQuantifyTime = parseInt(localStorage.getItem('lastQuantifyTime') || '0', 10);
-            const quantifyCount = parseInt(localStorage.getItem('quantifyCount') || '0', 10);
-            const oneDay = 24 * 60 * 60 * 1000; // Milisegundos en un día
-
-            // Verifica si el tiempo actual es mayor que el tiempo de última cuantificación más un día
-            if (now - lastQuantifyTime >= oneDay) {
-                localStorage.setItem('quantifyCount', '0'); // Reinicia el conteo de cuantificaciones
-            }
-
-            if (quantifyCount >= 2) {
-                statusMessageElement.innerText = 'Ya has realizado las 2 cuantificaciones diarias.';
-                updateCountdown();
-                return;
-            }
-
-            statusMessageElement.innerText = 'Cuantificando...';
-            quantifyButton.disabled = true;
-
-            setTimeout(() => {
-                statusMessageElement.innerText = 'Cuantificación completada.';
-                const newCount = quantifyCount + 1;
-                localStorage.setItem('lastQuantifyTime', now.toString());
-                localStorage.setItem('quantifyCount', newCount.toString());
-                updateCountdown();
-            }, 3000); // Simulación de una acción que toma 3 segundos
-        }
-
-        // Inicializa el estado al cargar
-        updateCountdown();
-        setInterval(updateCountdown, 1000); // Actualiza el cronómetro cada segundo
-        </script>
 </body>
 </html>
