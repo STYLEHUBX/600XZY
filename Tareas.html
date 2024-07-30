@@ -19,24 +19,25 @@
         .container {
             text-align: center;
             background-color: #003366;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
             width: 90%;
-            max-width: 400px;
-            margin-top: 60px; /* Espacio para la barra de navegación */
+            max-width: 500px;
+            margin-top: 60px;
+            margin-bottom: 20px;
         }
         .circle {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            background: conic-gradient(#007bff, #00aaff, #00ddff, #007bff);
+            background: radial-gradient(circle, #007bff 0%, #00aaff 50%, #00ddff 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0 auto 20px;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
             overflow: hidden;
         }
         .circle img {
@@ -44,6 +45,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
         }
         .button-container {
             display: flex;
@@ -52,17 +54,18 @@
         }
         .button-container p {
             margin: 10px 0;
-            font-size: 16px;
+            font-size: 18px;
+            color: #ffdd00;
         }
         .button-container button {
-            padding: 15px 20px;
-            font-size: 16px;
+            padding: 15px 25px;
+            font-size: 18px;
             color: #fff;
             background-color: #28a745;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .button-container button:hover {
@@ -74,12 +77,16 @@
             cursor: not-allowed;
         }
         .info {
-            margin-top: 20px;
-            font-size: 16px;
+            margin-top: 30px;
+            font-size: 18px;
+        }
+        .info h2 {
+            color: #ffdd00;
+            margin-bottom: 10px;
         }
         .status-message {
-            margin-top: 10px;
-            font-size: 16px;
+            margin-top: 15px;
+            font-size: 18px;
             color: #ffdd00;
         }
         .nav-bar {
@@ -88,10 +95,9 @@
             width: 100%;
             display: flex;
             justify-content: space-around;
-            /* Fondo oscuro y semitransparente */
             padding: 10px 0;
             font-size: 14px;
-            z-index: 1000; /* Para asegurarse de que la barra esté sobre el contenido */
+            z-index: 1000;
         }
         .nav-bar div {
             display: flex;
@@ -121,13 +127,13 @@
         }
         #countdown {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h3>Quantificacion Profesional VIP </h3>
+        <h3>Quantificación Profesional VIP</h3>
         <div class="circle">
             <img src="https://github.com/user-attachments/assets/764229cd-a7ce-43e1-8400-b7ebb6c7ae84" alt="Imagen 2">
         </div>
