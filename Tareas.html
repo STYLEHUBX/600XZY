@@ -8,13 +8,14 @@
         body {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #001f3f;
             font-family: 'Arial', sans-serif;
             color: #fff;
             margin: 0;
+            overflow: hidden;
         }
         .container {
             text-align: center;
@@ -24,7 +25,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             width: 90%;
             max-width: 350px;
-            margin-top: 100px; /* Espacio para la barra de navegación */
+            margin-bottom: 60px; /* Espacio para la barra de navegación */
         }
         .circle {
             position: relative;
@@ -73,7 +74,7 @@
         }
         .nav-bar {
             position: fixed;
-            top: 0;
+            bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-around;
@@ -110,6 +111,23 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Minería Profesional</h1>
+        <div class="circle">
+            <img src="https://github.com/user-attachments/assets/764229cd-a7ce-43e1-8400-b7ebb6c7ae84" alt="Imagen 2">
+        </div>
+        <div class="button-container">
+            <p>Ganancias diarias 25%, 30%</p>
+            <button onclick="quantify()">Cuantificar</button>
+        </div>
+        <p>Para cuantificar, necesitas comprar el VIP.</p>
+        <div class="info">
+            <h2>¿Cómo funciona?</h2>
+            <p>La minería profesional te permite obtener los mejores recursos utilizando tecnología avanzada.</p>
+            <p>Con la suscripción VIP, obtendrás acceso a herramientas exclusivas que mejorarán tu eficiencia y rendimiento.</p>
+        </div>
+    </div>
+
     <div class="nav-bar">
         <div>
             <a href="Home.html">
@@ -140,23 +158,6 @@
                 <img src="Bank_1.png" alt="Mi">
                 <p>CUENTA</p>
             </a>
-        </div>
-    </div>
-
-    <div class="container">
-        <h1>Minería Profesional</h1>
-        <div class="circle">
-            <img src="https://github.com/user-attachments/assets/764229cd-a7ce-43e1-8400-b7ebb6c7ae84" alt="Imagen 2">
-        </div>
-        <div class="button-container">
-            <p>Ganancias diarias 25%, 30%</p>
-            <button onclick="quantify()">Cuantificar</button>
-        </div>
-        <p>Para cuantificar, necesitas comprar el VIP.</p>
-        <div class="info">
-            <h2>¿Cómo funciona?</h2>
-            <p>La minería profesional te permite obtener los mejores recursos utilizando tecnología avanzada.</p>
-            <p>Con la suscripción VIP, obtendrás acceso a herramientas exclusivas que mejorarán tu eficiencia y rendimiento.</p>
         </div>
     </div>
 
