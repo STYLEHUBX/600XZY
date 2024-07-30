@@ -50,7 +50,7 @@
         .info {
             margin-top: 20px;
         }
-        .nav {
+        .nav-bar {
             display: flex;
             justify-content: space-around;
             background-color: #004080;
@@ -59,15 +59,30 @@
             margin-top: 20px;
             font-size: 18px;
         }
-        .nav a {
+        .nav-bar div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .nav-bar a {
             color: #fff;
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             transition: background-color 0.3s;
         }
-        .nav a:hover {
+        .nav-bar img {
+            width: 30px;
+            height: 30px;
+        }
+        .nav-bar a:hover {
             background-color: #0059b3;
+            border-radius: 5px;
+        }
+        .nav-bar p {
+            margin: 5px 0 0 0;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -83,12 +98,37 @@
             <p>La minería profesional te permite obtener los mejores recursos utilizando tecnología avanzada.</p>
             <p>Con la suscripción VIP, obtendrás acceso a herramientas exclusivas que mejorarán tu eficiencia y rendimiento.</p>
         </div>
-        <div class="nav">
-            <a href="Home.html">Inicio</a>
-            <a href="Tareas.html">Características</a>
-            <a href="Equipo.html">Precios</a>
-            <a href="Viptask.html">Soporte</a>
-            <a href="Perfil.html">Contacto</a>
+        <div class="nav-bar">
+            <div>
+                <a href="Home.html" style="color:white">
+                    <img src="Home-01.png" alt="Hogar">
+                    <p>HOME</p>
+                </a>
+            </div>
+            <div>
+                <a href="Tareas.html" style="color: white">
+                    <img src="xd.jpg" alt="Tarea">
+                    <p>TAREA</p>
+                </a>
+            </div>
+            <div>
+                <a href="Equipo.html" style="color:white">
+                    <img src="Equipo.png" alt="Equipo">
+                    <p>EQUIPO</p>
+                </a>
+            </div>    
+            <div>
+                <a href="Viptask.html" style="color:white">
+                    <img src="Vip-icono (1).png" alt="VIP">
+                    <p>VIP</p>
+                </a>
+            </div>
+            <div>
+                <a href="Perfil.html" style="color:white">
+                    <img src="Bank_1.png" alt="Mi">
+                    <p>CUENTA</p>
+                </a>
+            </div>
         </div>
     </div>
 
