@@ -107,6 +107,12 @@
             margin: 5px 0 0 0;
             font-size: 10px;
         }
+        .message {
+            display: none;
+            font-size: 16px;
+            color: #ffc107;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -117,7 +123,8 @@
         </div>
         <div class="button-container">
             <p>Ganancias diarias 25%, 30%</p>
-            <button onclick="quantify()">Cuantificar</button>
+            <button id="quantifyBtn">Cuantificar</button>
+            <div class="message" id="message">Cuantificando, espera paciente...</div>
         </div>
         <p>Para cuantificar, necesitas comprar el VIP.</p>
         <div class="info">
@@ -161,9 +168,68 @@
     </div>
 
     <script>
-        function quantify() {
-            alert("Necesitas comprar el VIP para usar esta función.");
+        // Variables para controlar el estado de la cuantificación
+        let lastQuantifyTime = 0;
+        let quantifyCount = 0;
+        const maxQuantificationsPerDay = 2;
+        const quantifyAmount = 0.10;
+        const cooldown = 30000; // 30 segundos en milisegundos
+
+        function updateBalance(amount) {
+            // Lógica para actualizar el balance en Perfil.html
+            // Este código es un ejemplo; en un entorno real, deberías utilizar almacenamiento en servidor o local para persistir los datos
+            let balance = localStorage.getItem('balance') || 0;
+            balance = parseFloat(balance) + amount;
+            localStorage.setItem('balance', balance);
         }
+
+        function quantify() {
+            const now = Date.now();
+            const lastQuantifyDate = new Date(parseInt(localStorage.getItem('lastQuantifyDate'), 10));
+            const today = new Date();
+
+            // Comprobar si el usuario ya ha cuantificado hoy
+            if (lastQuantifyDate && lastQuantifyDate.toDateString() === today.toDateString()) {
+                if (quantifyCount >= maxQuantificationsPerDay) {
+                    alert('Ya has alcanzado el límite de cuantificaciones diarias.');
+                    return;
+                }
+            } else {
+                quantifyCount = 0; // Resetear el conteo si es un nuevo día
+            }
+
+            if (now - lastQuantifyTime < cooldown) {
+                alert('Debes esperar antes de poder cuantificar nuevamente.');
+                return;
+            }
+
+            document.getElementById('quantifyBtn').disabled = true;
+            document.getElementById('message').style.display = 'block';
+
+            // Simular el proceso de cuantificación
+            setTimeout(() => {
+                document.getElementById('message').style.display = 'none';
+                document.getElementById('quantifyBtn').disabled = false;
+                lastQuantifyTime = now;
+                quantifyCount++;
+                localStorage.setItem('lastQuantifyDate', today.getTime());
+                updateBalance(quantifyAmount);
+                alert(`Cuantificación completa. Has ganado $${quantifyAmount}.`);
+            }, cooldown);
+        }
+
+        // Inicialización
+        window.onload = () => {
+            const lastQuantifyDate = localStorage.getItem('lastQuantifyDate');
+            if (lastQuantifyDate) {
+                lastQuantifyTime = parseInt(lastQuantifyDate, 10);
+                const today = new Date();
+                const lastQuantify = new Date(lastQuantifyTime);
+                if (lastQuantify.toDateString() === today.toDateString()) {
+                    quantifyCount = localStorage.getItem('quantifyCount') || 0;
+                }
+            }
+        };
     </script>
 </body>
 </html>
