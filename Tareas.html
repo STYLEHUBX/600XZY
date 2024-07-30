@@ -98,7 +98,6 @@
             padding: 10px 0;
             font-size: 14px;
             z-index: 1000;
-            
         }
         .nav-bar div {
             display: flex;
@@ -139,22 +138,25 @@
             width: 80%;
             max-width: 500px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-            height: 300px; /* Aumentado para mostrar más elementos */
+            height: 400px; /* Aumentado para mostrar más elementos */
             overflow: hidden;
             box-sizing: border-box;
         }
         .withdrawals h2 {
             color: #ffdd00;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 24px;
+            border-bottom: 2px solid #ffdd00;
+            padding-bottom: 10px;
         }
         .withdrawal-item {
-            position: absolute;
             width: 100%;
-            box-sizing: border-box;
             padding: 10px;
             background-color: #003366;
             border-radius: 5px;
             color: #fff;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             opacity: 0;
             transform: translateY(100%);
             transition: opacity 0.5s, transform 0.5s;
@@ -244,8 +246,7 @@
             const resetTime = new Date();
             resetTime.setHours(23, 59, 59, 999); // Hora de reinicio a las 23:59:59.999
             if (now.getTime() > resetTime.getTime()) {
-                resetTime.setDate(resetTime.getDate() + 1); // Mueve al día siguiente
-            }
+                resetTime.setDate(resetTime.getDate() + 1); // Mueve al día siguiente}
             return resetTime.getTime() - now.getTime();
         }
 
