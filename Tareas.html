@@ -130,6 +130,7 @@
             font-size: 20px;
         }
         .withdrawals {
+            position: relative;
             margin-top: 20px;
             background-color: #002d5b;
             padding: 20px;
@@ -137,15 +138,29 @@
             width: 80%;
             max-width: 500px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            height: 200px;
+            overflow: hidden;
+            box-sizing: border-box;
         }
         .withdrawals h2 {
             color: #ffdd00;
             margin-bottom: 10px;
         }
-        .withdrawals p {
-            margin: 5px 0;
-            font-size: 16px;
+        .withdrawal-item {
+            position: absolute;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            background-color: #003366;
+            border-radius: 5px;
             color: #fff;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .withdrawal-item.show {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -169,13 +184,13 @@
         </div>
     </div>
 
-    <div class="withdrawals">
+    <div class="withdrawals" id="withdrawals">
         <h2>Retiros Diarios de Nuestros Usuarios</h2>
-        <p>Dirección: T****dU  |  Valor: 50 TRX</p>
-        <p>Dirección: T9*******B  |  Valor: 75 TRX</p>
-        <p>Dirección: TP****fF  |  Valor: 30 TRX</p>
-        <p>Dirección: T5******mV  |  Valor: 120 TRX</p>
-        <p>Dirección: TH****8G  |  Valor: 90 TRX</p>
+        <div class="withdrawal-item">Dirección: T****dU  |  Valor: 50 USDT</div>
+        <div class="withdrawal-item">Dirección: T9*******B  |  Valor: 75 USDT</div>
+        <div class="withdrawal-item">Dirección: TP****fF  |  Valor: 30 USDT</div>
+        <div class="withdrawal-item">Dirección: T5******mV  |  Valor: 120 USDT</div>
+        <div class="withdrawal-item">Dirección: TH****8G  |  Valor: 90 USDT</div>
     </div>
 
     <div class="nav-bar">
@@ -215,8 +230,20 @@
         const quantifyButton = document.getElementById('quantifyButton');
         const statusMessageElement = document.getElementById('statusMessage');
         const countdownElement = document.getElementById('countdown');
+        const withdrawalsContainer = document.getElementById('withdrawals');
+        const withdrawalItems = Array.from(withdrawalsContainer.querySelectorAll('.withdrawal-item'));
 
         function getRemainingTime() {
+            const now = new Date();
+            const resetTime = new Date();
+            resetTime.setHours(23, 59, 59, 999); // Hora de reinicio a las 23:59:59.999
+
+            if (now.getTime() > resetTime.getTime()) {
+                resetTime.setDate(resetTime.getDate() + 1); // Mueve al día siguiente
+            }
+
+            return resetTime.getTime() - now.getTime
+            function getRemainingTime() {
             const now = new Date();
             const resetTime = new Date();
             resetTime.setHours(23, 59, 59, 999); // Hora de reinicio a las 23:59:59.999
@@ -241,7 +268,6 @@
             const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
             const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
 
-            countdownElement.innerText = `Tiempo restante: ${hours}h ${minutes}
             countdownElement.innerText = `Tiempo restante: ${hours}h ${minutes}m ${seconds}s`;
             countdownElement.style.display = 'block';
             quantifyButton.disabled = true;
@@ -275,9 +301,36 @@
             }, 3000); // Simulación de una acción que toma 3 segundos
         }
 
-        // Inicializa la cuenta regresiva al cargar la página
+        function animateWithdrawals() {
+            let index = 0;
+
+            function showNextItem() {
+                if (index >= withdrawalItems.length) {
+                    index = 0;
+                }
+
+                withdrawalItems.forEach((item, i) => {
+                    item.classList.remove('show');
+                    item.style.transform = 'translateY(100%)';
+                    item.style.opacity = '0';
+                });
+
+                const currentItem = withdrawalItems[index];
+                currentItem.classList.add('show');
+                currentItem.style.transform = 'translateY(0)';
+                currentItem.style.opacity = '1';
+
+                index++;
+                setTimeout(showNextItem, 3000); // Muestra el siguiente ítem después de 3 segundos
+            }
+
+            showNextItem();
+        }
+
+        // Inicializa la cuenta regresiva y las animaciones al cargar la página
         updateCountdown();
         setInterval(updateCountdown, 1000); // Actualiza la cuenta regresiva cada segundo
+        animateWithdrawals();
     </script>
 </body>
 </html>
