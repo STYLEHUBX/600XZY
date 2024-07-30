@@ -18,24 +18,24 @@
         .container {
             text-align: center;
             background-color: #003366;
-            padding: 20px;
+            padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
             width: 90%;
-            max-width: 350px;
-            margin-top: 60px; /* Espacio para la barra de navegación */
+            max-width: 400px;
+            margin-top: 80px;
         }
         .circle {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             background: conic-gradient(#007bff, #00aaff, #00ddff, #007bff);
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            margin: 0 auto 30px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
             overflow: hidden;
         }
         .circle img {
@@ -51,30 +51,33 @@
         }
         .button-container p {
             margin: 10px 0;
-            font-size: 14px;
+            font-size: 16px;
+            color: #ccc;
         }
         .button-container button {
-            padding: 10px 15px;
-            font-size: 14px;
+            padding: 15px 20px;
+            font-size: 16px;
             color: #fff;
             background-color: #28a745;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .button-container button:hover {
             background-color: #218838;
+            transform: scale(1.05);
         }
         .info {
-            margin-top: 20px;
-            font-size: 14px;
+            margin-top: 30px;
+            font-size: 16px;
         }
         .status-message {
-            margin-top: 10px;
-            font-size: 14px;
+            margin-top: 20px;
+            font-size: 16px;
             color: #ffdd00;
+            font-weight: bold;
         }
         .nav-bar {
             position: fixed;
@@ -82,10 +85,10 @@
             width: 100%;
             display: flex;
             justify-content: space-around;
-            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro y semitransparente */
-            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
             font-size: 14px;
-            z-index: 1000; /* Para asegurarse de que la barra esté sobre el contenido */
+            z-index: 1000;
         }
         .nav-bar div {
             display: flex;
@@ -98,22 +101,24 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, border-radius 0.3s ease;
         }
         .nav-bar img {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
         }
         .nav-bar a:hover {
             background-color: #0059b3;
-            border-radius: 5px;
+            border-radius: 8px;
         }
         .nav-bar p {
             margin: 5px 0 0 0;
-            font-size: 10px;
+            font-size: 12px;
         }
         #countdown {
-            display: none;
+            display: block;
+            font-size: 18px;
+            color: #ffdd00;
         }
     </style>
 </head>
@@ -207,12 +212,13 @@
 
         function quantify() {
             const now = Date.now();
-            const lastQuantifyTime = parseInt(localStorage.getItem('lastQuantifyTime') || '0', 10);
+            const lastQuantifyDate = new Date(parseInt(localStorage.getItem('lastQuantifyDate') || '0', 10));
             const quantifyCount = parseInt(localStorage.getItem('quantifyCount') || '0', 10);
             const oneDay = 24 * 60 * 60 * 1000; // Milisegundos en un día
 
-            if (now - lastQuantifyTime >= oneDay) {
+            if (new Date().toDateString() !== lastQuantifyDate.toDateString()) {
                 localStorage.setItem('quantifyCount', '0'); // Reset the count for a new day
+                localStorage.setItem('lastQuantifyDate', now.toString());
             }
 
             if (quantifyCount >= 2) {
@@ -227,7 +233,6 @@
             setTimeout(() => {
                 statusMessageElement.innerText = 'Cuantificación completada.';
                 const newCount = quantifyCount + 1;
-                localStorage.setItem('lastQuantifyTime', now.toString());
                 localStorage.setItem('quantifyCount', newCount.toString());
                 updateCountdown();
             }, 3000); // Simulación de una acción que toma 3 segundos
