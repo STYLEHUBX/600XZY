@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantificacion Profesional</title>
+    <title>Quantificación Profesional</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -124,6 +124,7 @@
             <p>Ganancias diarias 25%, 30%</p>
             <button id="quantifyButton" onclick="quantify()">Cuantificar</button>
             <div id="statusMessage" class="status-message"></div>
+            <div id="countdown" class="status-message"></div>
         </div>
         <p>Para cuantificar, necesitas comprar el VIP.</p>
         <div class="info">
@@ -167,42 +168,62 @@
     </div>
 
     <script>
-        let lastQuantifyTime = localStorage.getItem('lastQuantifyTime') || 0;
-        const balanceElement = document.getElementById('balance');
+        const quantificationButton = document.getElementById('quantifyButton');
         const statusMessageElement = document.getElementById('statusMessage');
-        const quantifyButton = document.getElementById('quantifyButton');
+        const countdownElement = document.getElementById('countdown');
 
-        function updateBalance(amount) {
-            let balance = parseFloat(localStorage.getItem('balance')) || 0;
-            balance += amount;
-            localStorage.setItem('balance', balance.toFixed(2));
-            balanceElement.innerText = `$${balance.toFixed(2)}`;
+        function getRemainingTime() {
+            const now = new Date();
+            const resetTime = new Date();
+            resetTime.setHours(23, 0, 0, 0); // 11:00 PM
+
+            if (now.getTime() > resetTime.getTime()) {
+                resetTime.setDate(resetTime.getDate() + 1); // Move to the next day
+            }
+
+            return resetTime.getTime() - now.getTime();
+        }
+
+        function updateCountdown() {
+            const remainingTime = getRemainingTime();
+            if (remainingTime <= 0) {
+                countdownElement.innerText = '¡Es hora de cuantificar!';
+                quantificationButton.disabled = false;
+                return;
+            }
+
+            const hours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+            const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+            const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
+
+            countdownElement.innerText = `Tiempo restante: ${hours}h ${minutes}m ${seconds}s`;
+            quantificationButton.disabled = true;
         }
 
         function quantify() {
             const now = Date.now();
+            const lastQuantifyTime = parseInt(localStorage.getItem('lastQuantifyTime') || '0', 10);
             const oneDay = 24 * 60 * 60 * 1000; // Milisegundos en un día
-            const maxQuantificationsPerDay = 2;
-            const quantificationInterval = 30 * 1000; // 30 segundos en milisegundos
 
             if (now - lastQuantifyTime < oneDay) {
-                const remainingTime = oneDay - (now - lastQuantifyTime);
-                const remainingMinutes = Math.floor(remainingTime / (60 * 1000));
-                const remainingSeconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
-                statusMessageElement.innerText = `Puedes cuantificar en ${remainingMinutes}m ${remainingSeconds}s.`;
+                statusMessageElement.innerText = 'Ya has cuantificado hoy. Espera hasta el siguiente ciclo.';
                 return;
             }
 
-            statusMessageElement.innerText = "Cuantificando...";
-            quantifyButton.disabled = true;
+            statusMessageElement.innerText = 'Cuantificando...';
+            quantificationButton.disabled = true;
+
             setTimeout(() => {
-                statusMessageElement.innerText = "Cuantificación Completada";
-                updateBalance(0.10);
-                quantifyButton.disabled = false;
-                lastQuantifyTime = Date.now();
-                localStorage.setItem('lastQuantifyTime', lastQuantifyTime);
-            }, quantificationInterval);
+                statusMessageElement.innerText = 'Cuantificación completada.';
+                localStorage.setItem('lastQuantifyTime', now.toString());
+                updateCountdown();
+            }, 3000); // Simulación de una acción que toma 3 segundos
         }
+
+        setInterval(updateCountdown, 1000); // Actualiza el cronómetro cada segundo
+
+        // Inicializa el estado al cargar la página
+        updateCountdown();
     </script>
 </body>
 </html>
