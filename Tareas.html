@@ -129,6 +129,24 @@
             margin-top: 20px;
             font-size: 20px;
         }
+        .withdrawals {
+            margin-top: 20px;
+            background-color: #002d5b;
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+        .withdrawals h2 {
+            color: #ffdd00;
+            margin-bottom: 10px;
+        }
+        .withdrawals p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -149,6 +167,15 @@
             <p>La minería profesional te permite obtener los mejores recursos utilizando tecnología avanzada.</p>
             <p>Con la suscripción VIP, obtendrás acceso a herramientas exclusivas que mejorarán tu eficiencia y rendimiento.</p>
         </div>
+    </div>
+
+    <div class="withdrawals">
+        <h2>Retiros Diarios de Nuestros Usuarios</h2>
+        <p>Dirección: T****dU  |  Valor: 50 TRX</p>
+        <p>Dirección: T9*******B  |  Valor: 75 TRX</p>
+        <p>Dirección: TP****fF  |  Valor: 30 TRX</p>
+        <p>Dirección: T5******mV  |  Valor: 120 TRX</p>
+        <p>Dirección: TH****8G  |  Valor: 90 TRX</p>
     </div>
 
     <div class="nav-bar">
@@ -214,6 +241,7 @@
             const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
             const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
 
+            countdownElement.innerText = `Tiempo restante: ${hours}h ${minutes}
             countdownElement.innerText = `Tiempo restante: ${hours}h ${minutes}m ${seconds}s`;
             countdownElement.style.display = 'block';
             quantifyButton.disabled = true;
