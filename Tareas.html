@@ -14,7 +14,7 @@
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
-            min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la pantalla */
+            min-height: 100vh;
         }
         .container {
             text-align: center;
@@ -25,6 +25,7 @@
             width: 90%;
             max-width: 400px;
             margin-top: 60px; /* Espacio para la barra de navegación */
+            margin-bottom: 60px; /* Espacio para la barra de navegación */
         }
         .circle {
             position: relative;
@@ -35,7 +36,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 20px;
             box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
             overflow: hidden;
         }
@@ -88,8 +89,8 @@
             width: 100%;
             display: flex;
             justify-content: space-around;
-            /* Fondo oscuro y semitransparente */
-            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro y semitransparente */
+            padding: 10px 0;
             font-size: 14px;
             z-index: 1000; /* Para asegurarse de que la barra esté sobre el contenido */
         }
@@ -105,6 +106,7 @@
             flex-direction: column;
             align-items: center;
             transition: background-color 0.3s ease, border-radius 0.3s ease;
+            padding: 5px;
         }
         .nav-bar img {
             width: 28px;
@@ -126,7 +128,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Quantificacion Profesional VIP</h1>
+        <h1>Quantificación Profesional VIP</h1>
         <div class="circle">
             <img src="https://github.com/user-attachments/assets/764229cd-a7ce-43e1-8400-b7ebb6c7ae84" alt="Imagen 2">
         </div>
@@ -136,7 +138,7 @@
             <div id="statusMessage" class="status-message"></div>
             <div id="countdown" class="status-message"></div>
         </div>
-        <p>Para cuantificar y obtene mayores ganancias, necesitas mejorar el VIP.</p>
+        <p>Para cuantificar y obtener mayores ganancias, necesitas mejorar el VIP.</p>
         <div class="info">
             <h2>¿Cómo funciona?</h2>
             <p>La minería profesional te permite obtener los mejores recursos utilizando tecnología avanzada.</p>
@@ -220,6 +222,7 @@
 
             if (now - lastQuantifyTime >= oneDay) {
                 localStorage.setItem('quantifyCount', '0'); // Reinicia el conteo de cuantificaciones
+                localStorage.setItem('quantifyCount', '0');
             }
 
             if (quantifyCount >= 2) {
@@ -236,9 +239,7 @@
                 const newCount = quantifyCount + 1;
                 localStorage.setItem('lastQuantifyTime', now.toString());
                 localStorage.setItem('quantifyCount', newCount.toString());
-                updateCountdown
-                // Completa la actualización del contador
-                updateCountdown();
+                updateCountdown(); // Completa la actualización del contador
             }, 3000); // Simulación de una acción que toma 3 segundos
         }
 
