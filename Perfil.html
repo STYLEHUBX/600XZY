@@ -146,19 +146,18 @@
     </div>
 
     <script>
-        function actualizarBalance() {
-            const balance = localStorage.getItem('balance') || '0.00';
-            document.getElementById('balance').innerText = `$${parseFloat(balance).toFixed(2)}`;
-        }
+        function inicializarValores() {
+            // Inicializa el balance y las recargas en localStorage
+            localStorage.setItem("balance", "0.00");
+            localStorage.setItem("recargas", "0.00");
 
-        function inicializarRecargas() {
-            const recargas = localStorage.getItem('recargas') || '0.00';
-            document.getElementById('recargas').innerText = `$${parseFloat(recargas).toFixed(2)}`;
+            // Actualiza el DOM con los valores iniciales
+            document.getElementById("balance").innerText = "$0.00";
+            document.getElementById("recargas").innerText = "$0.00";
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            actualizarBalance();
-            inicializarRecargas();
+            inicializarValores();
         });
     </script>
 </body>
