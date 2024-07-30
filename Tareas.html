@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minería Profesional</title>
+    <title>Quantificacion Profesional</title>
     <style>
+        /* Estilos actualizados para móviles */
         body {
+            font-family: 'Arial', sans-serif;
+            background-color: #001f3f;
+            color: #fff;
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #001f3f;
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-            margin: 0;
-            overflow-x: hidden; /* Previene el desplazamiento horizontal */
+            overflow-x: hidden;
         }
         .container {
             text-align: center;
@@ -23,7 +24,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             width: 90%;
             max-width: 350px;
-            margin-top: 60px; /* Espacio para la barra de navegación */
+            margin-top: 60px;
         }
         .circle {
             position: relative;
@@ -77,10 +78,10 @@
             width: 100%;
             display: flex;
             justify-content: space-around;
-            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro y semitransparente */
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 10px;
             font-size: 14px;
-            z-index: 1000; /* Para asegurarse de que la barra esté sobre el contenido */
+            z-index: 1000;
         }
         .nav-bar div {
             display: flex;
@@ -107,12 +108,6 @@
             margin: 5px 0 0 0;
             font-size: 10px;
         }
-        .message {
-            display: none;
-            font-size: 16px;
-            color: #ffc107;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
@@ -123,8 +118,7 @@
         </div>
         <div class="button-container">
             <p>Ganancias diarias 25%, 30%</p>
-            <button id="quantifyBtn" onclick="quantify()">Cuantificar</button>
-            <div class="message" id="message">Cuantificando, espera paciente...</div>
+            <button onclick="quantify()">Cuantificar</button>
         </div>
         <p>Para cuantificar, necesitas comprar el VIP.</p>
         <div class="info">
@@ -168,68 +162,38 @@
     </div>
 
     <script>
-        // Variables para controlar el estado de la cuantificación
-        let lastQuantifyTime = 0;
-        let quantifyCount = 0;
-        const maxQuantificationsPerDay = 2;
-        const quantifyAmount = 0.10;
-        const cooldown = 30000; // 30 segundos en milisegundos
-
-        function updateBalance(amount) {
-            // Lógica para actualizar el balance en Perfil.html
-            // Este código es un ejemplo; en un entorno real, deberías utilizar almacenamiento en servidor o local para persistir los datos
-            let balance = parseFloat(localStorage.getItem('balance')) || 0;
-            balance += amount;
-            localStorage.setItem('balance', balance.toFixed(2));
-        }
+        let lastQuantifyTime = localStorage.getItem('lastQuantifyTime') || 0;
+        let quantificationCount = parseInt(localStorage.getItem('quantificationCount')) || 0;
+        const quantificationLimit = 2; // Máximo de cuantificaciones por día
+        const quantifyInterval = 24 * 60 * 60 * 1000; // Intervalo de 24 horas
 
         function quantify() {
             const now = Date.now();
-            const lastQuantifyDate = new Date(parseInt(localStorage.getItem('lastQuantifyDate'), 10));
-            const today = new Date();
-
-            // Comprobar si el usuario ya ha cuantificado hoy
-            if (lastQuantifyDate && lastQuantifyDate.toDateString() === today.toDateString()) {
-                if (quantifyCount >= maxQuantificationsPerDay) {
-                    alert('Ya has alcanzado el límite de cuantificaciones diarias.');
-                    return;
-                }
-            } else {
-                quantifyCount = 0; // Resetear el conteo si es un nuevo día
-            }
-
-            if (now - lastQuantifyTime < cooldown) {
-                alert('Debes esperar antes de poder cuantificar nuevamente.');
+            if (quantificationCount >= quantificationLimit && now - lastQuantifyTime < quantifyInterval) {
+                alert("Has alcanzado el límite de cuantificaciones diarias. Vuelve mañana.");
                 return;
             }
 
-            document.getElementById('quantifyBtn').disabled = true;
-            document.getElementById('message').style.display = 'block';
-
-            // Simular el proceso de cuantificación
-            setTimeout(() => {
-                document.getElementById('message').style.display = 'none';
-                document.getElementById('quantifyBtn').disabled = false;
-                lastQuantifyTime = now;
-                quantifyCount++;
-                localStorage.setItem('lastQuantifyDate', today.getTime());
-                updateBalance(quantifyAmount);
-                alert(`Cuantificación completa. Has ganado $${quantifyAmount.toFixed(2)}.`);
-            }, cooldown);
-        }
-
-        // Inicialización
-        window.onload = () => {
-            const lastQuantifyDate = localStorage.getItem('lastQuantifyDate');
-            if (lastQuantifyDate) {
-                lastQuantifyTime = parseInt(lastQuantifyDate, 10);
-                const today = new Date();
-                const lastQuantify = new Date(lastQuantifyTime);
-                if (lastQuantify.toDateString() === today.toDateString()) {
-                    quantifyCount = parseInt(localStorage.getItem('quantifyCount')) || 0;
-                }
+            if (now - lastQuantifyTime >= quantifyInterval) {
+                quantificationCount = 0; // Resetea el contador si ha pasado un día
             }
-        };
+
+            lastQuantifyTime = now;
+            quantificationCount++;
+            localStorage.setItem('lastQuantifyTime', lastQuantifyTime);
+            localStorage.setItem('quantificationCount', quantificationCount);
+
+            alert("Cuantificando, espera pacientemente...");
+            setTimeout(() => {
+                const currentBalance = parseFloat(localStorage.getItem('balance')) || 0;
+                const newBalance = currentBalance + 0.10;
+                localStorage.setItem('balance', newBalance.toFixed(2));
+                alert("Cuantificación completa. Tu nuevo saldo se ha actualizado.");
+
+                // Opcional: Redirigir a Perfil.html para ver el saldo actualizado
+                window.location.href = 'Perfil.html';
+            }, 30000); // 30 segundos
+        }
     </script>
 </body>
 </html>
