@@ -22,20 +22,21 @@
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
             width: 90%;
-            max-width: 400px;
-            margin-top: 60px; /* Espacio para la barra de navegación */
+            max-width: 500px;
+            margin-top: 80px; /* Ajusta el espacio para la barra de navegación en pantallas pequeñas */
+            margin-bottom: 80px; /* Añade espacio para la barra de navegación en pantallas pequeñas */
         }
         .circle {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             background: conic-gradient(#007bff, #00aaff, #00ddff, #007bff);
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0 auto 20px auto;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
             overflow: hidden;
         }
         .circle img {
@@ -50,18 +51,18 @@
             align-items: center;
         }
         .button-container p {
-            margin: 10px 0;
-            font-size: 16px;
+            margin: 15px 0;
+            font-size: 18px;
         }
         .button-container button {
-            padding: 15px 20px;
-            font-size: 16px;
+            padding: 15px 25px;
+            font-size: 18px;
             color: #fff;
             background-color: #28a745;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .button-container button:hover {
@@ -106,8 +107,8 @@
             transition: background-color 0.3s ease, border-radius 0.3s ease;
         }
         .nav-bar img {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
         }
         .nav-bar a:hover {
             background-color: #0059b3;
@@ -237,7 +238,9 @@
                 localStorage.setItem('lastQuantifyTime', now.toString());
                 localStorage.setItem('quantifyCount', newCount.toString());
                 updateCountdown();
-            }, 3000); // Simulación de una acción que toma
+            }, 3000); // Simulación de una acción que toma 3 segundos
+        }
+
         // Inicializa la cuenta regresiva al cargar la página
         updateCountdown();
         setInterval(updateCountdown, 1000); // Actualiza la cuenta regresiva cada segundo
