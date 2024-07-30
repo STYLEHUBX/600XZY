@@ -20,10 +20,10 @@
             background-color: #003366;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
             width: 90%;
             max-width: 400px;
-            margin-top: 80px;
+            margin-top: 60px; /* Espacio para la barra de navegación */
         }
         .circle {
             position: relative;
@@ -34,8 +34,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto 30px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
             overflow: hidden;
         }
         .circle img {
@@ -52,7 +52,6 @@
         .button-container p {
             margin: 10px 0;
             font-size: 16px;
-            color: #ccc;
         }
         .button-container button {
             padding: 15px 20px;
@@ -62,22 +61,25 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .button-container button:hover {
             background-color: #218838;
             transform: scale(1.05);
         }
+        .button-container button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
         .info {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 16px;
         }
         .status-message {
-            margin-top: 20px;
+            margin-top: 10px;
             font-size: 16px;
             color: #ffdd00;
-            font-weight: bold;
         }
         .nav-bar {
             position: fixed;
@@ -85,10 +87,10 @@
             width: 100%;
             display: flex;
             justify-content: space-around;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro y semitransparente */
             padding: 15px;
             font-size: 14px;
-            z-index: 1000;
+            z-index: 1000; /* Para asegurarse de que la barra esté sobre el contenido */
         }
         .nav-bar div {
             display: flex;
@@ -116,9 +118,8 @@
             font-size: 12px;
         }
         #countdown {
-            display: block;
+            margin-top: 20px;
             font-size: 18px;
-            color: #ffdd00;
         }
     </style>
 </head>
@@ -186,7 +187,7 @@
             resetTime.setHours(23, 0, 0, 0); // 11:00 PM
 
             if (now.getTime() > resetTime.getTime()) {
-                resetTime.setDate(resetTime.getDate() + 1); // Move to the next day
+                resetTime.setDate(resetTime.getDate() + 1); // Mueve al día siguiente
             }
 
             return resetTime.getTime() - now.getTime();
@@ -212,13 +213,13 @@
 
         function quantify() {
             const now = Date.now();
-            const lastQuantifyDate = new Date(parseInt(localStorage.getItem('lastQuantifyDate') || '0', 10));
+            const lastQuantifyTime = parseInt(localStorage.getItem('lastQuantifyTime') || '0', 10);
             const quantifyCount = parseInt(localStorage.getItem('quantifyCount') || '0', 10);
             const oneDay = 24 * 60 * 60 * 1000; // Milisegundos en un día
 
-            if (new Date().toDateString() !== lastQuantifyDate.toDateString()) {
-                localStorage.setItem('quantifyCount', '0'); // Reset the count for a new day
-                localStorage.setItem('lastQuantifyDate', now.toString());
+            // Verifica si el tiempo actual es mayor que el tiempo de última cuantificación más un día
+            if (now - lastQuantifyTime >= oneDay) {
+                localStorage.setItem('quantifyCount', '0'); // Reinicia el conteo de cuantificaciones
             }
 
             if (quantifyCount >= 2) {
@@ -233,16 +234,15 @@
             setTimeout(() => {
                 statusMessageElement.innerText = 'Cuantificación completada.';
                 const newCount = quantifyCount + 1;
+                localStorage.setItem('lastQuantifyTime', now.toString());
                 localStorage.setItem('quantifyCount', newCount.toString());
                 updateCountdown();
             }, 3000); // Simulación de una acción que toma 3 segundos
         }
 
-        setInterval(updateCountdown, 1000); // Actualiza el cronómetro cada segundo
-
         // Inicializa el estado al cargar
         updateCountdown();
-
+        setInterval(updateCountdown, 1000); // Actualiza el cronómetro cada segundo
     </script>
 </body>
 </html>
