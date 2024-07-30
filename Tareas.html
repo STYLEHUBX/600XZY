@@ -98,6 +98,7 @@
             padding: 10px 0;
             font-size: 14px;
             z-index: 1000;
+            background-color: #002d5b;
         }
         .nav-bar div {
             display: flex;
@@ -138,7 +139,7 @@
             width: 80%;
             max-width: 500px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-            height: 200px;
+            height: 300px; /* Aumentado para mostrar más elementos */
             overflow: hidden;
             box-sizing: border-box;
         }
@@ -186,11 +187,7 @@
 
     <div class="withdrawals" id="withdrawals">
         <h2>Retiros Diarios de Nuestros Usuarios</h2>
-        <div class="withdrawal-item">Dirección: T****dU  |  Valor: 50 USDT</div>
-        <div class="withdrawal-item">Dirección: T9*******B  |  Valor: 75 USDT</div>
-        <div class="withdrawal-item">Dirección: TP****fF  |  Valor: 30 USDT</div>
-        <div class="withdrawal-item">Dirección: T5******mV  |  Valor: 120 USDT</div>
-        <div class="withdrawal-item">Dirección: TH****8G  |  Valor: 90 USDT</div>
+        <!-- Se pueden agregar más ítems aquí -->
     </div>
 
     <div class="nav-bar">
@@ -231,27 +228,24 @@
         const statusMessageElement = document.getElementById('statusMessage');
         const countdownElement = document.getElementById('countdown');
         const withdrawalsContainer = document.getElementById('withdrawals');
-        const withdrawalItems = Array.from(withdrawalsContainer.querySelectorAll('.withdrawal-item'));
+        const withdrawalItems = [];
+
+        // Generar 20 ítems de retiro de manera dinámica
+        for (let i = 1; i <= 20; i++) {
+            const item = document.createElement('div');
+            item.classList.add('withdrawal-item');
+            item.innerText = `Dirección: T${'*'.repeat(Math.floor(Math.random() * 5 + 2))}  |  Valor: ${Math.floor(Math.random() * 100) + 10} USDT`;
+            withdrawalsContainer.appendChild(item);
+            withdrawalItems.push(item);
+        }
 
         function getRemainingTime() {
             const now = new Date();
             const resetTime = new Date();
             resetTime.setHours(23, 59, 59, 999); // Hora de reinicio a las 23:59:59.999
-
             if (now.getTime() > resetTime.getTime()) {
                 resetTime.setDate(resetTime.getDate() + 1); // Mueve al día siguiente
             }
-
-            return resetTime.getTime() - now.getTime
-            function getRemainingTime() {
-            const now = new Date();
-            const resetTime = new Date();
-            resetTime.setHours(23, 59, 59, 999); // Hora de reinicio a las 23:59:59.999
-
-            if (now.getTime() > resetTime.getTime()) {
-                resetTime.setDate(resetTime.getDate() + 1); // Mueve al día siguiente
-            }
-
             return resetTime.getTime() - now.getTime();
         }
 
@@ -309,7 +303,7 @@
                     index = 0;
                 }
 
-                withdrawalItems.forEach((item, i) => {
+                withdrawalItems.forEach((item) => {
                     item.classList.remove('show');
                     item.style.transform = 'translateY(100%)';
                     item.style.opacity = '0';
@@ -321,7 +315,7 @@
                 currentItem.style.opacity = '1';
 
                 index++;
-                setTimeout(showNextItem, 3000); // Muestra el siguiente ítem después de 3 segundos
+                setTimeout(showNextItem, 5000); // Muestra el siguiente ítem después de 5 segundos
             }
 
             showNextItem();
