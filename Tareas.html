@@ -7,7 +7,8 @@
     <style>
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
             height: 100vh;
             background-color: #001f3f;
@@ -22,6 +23,7 @@
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             width: 300px;
+            margin-top: 40px;
         }
         .circle {
             width: 150px;
@@ -51,12 +53,13 @@
             margin-top: 20px;
         }
         .nav-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
             display: flex;
             justify-content: space-around;
-            background-color: #004080;
+            background-color: rgba(0, 0, 0, 0.5);
             padding: 10px;
-            border-radius: 0 0 15px 15px;
-            margin-top: 20px;
             font-size: 18px;
         }
         .nav-bar div {
@@ -98,37 +101,38 @@
             <p>La minería profesional te permite obtener los mejores recursos utilizando tecnología avanzada.</p>
             <p>Con la suscripción VIP, obtendrás acceso a herramientas exclusivas que mejorarán tu eficiencia y rendimiento.</p>
         </div>
-        <div class="nav-bar">
-            <div>
-                <a href="Home.html" style="color:white">
-                    <img src="Home-01.png" alt="Hogar">
-                    <p>HOME</p>
-                </a>
-            </div>
-            <div>
-                <a href="Tareas.html" style="color: white">
-                    <img src="xd.jpg" alt="Tarea">
-                    <p>TAREA</p>
-                </a>
-            </div>
-            <div>
-                <a href="Equipo.html" style="color:white">
-                    <img src="Equipo.png" alt="Equipo">
-                    <p>EQUIPO</p>
-                </a>
-            </div>    
-            <div>
-                <a href="Viptask.html" style="color:white">
-                    <img src="Vip-icono (1).png" alt="VIP">
-                    <p>VIP</p>
-                </a>
-            </div>
-            <div>
-                <a href="Perfil.html" style="color:white">
-                    <img src="Bank_1.png" alt="Mi">
-                    <p>CUENTA</p>
-                </a>
-            </div>
+    </div>
+
+    <div class="nav-bar">
+        <div>
+            <a href="Home.html" style="color:white">
+                <img src="Home-01.png" alt="Hogar">
+                <p>HOME</p>
+            </a>
+        </div>
+        <div>
+            <a href="Tareas.html" style="color: white">
+                <img src="xd.jpg" alt="Tarea">
+                <p>TAREA</p>
+            </a>
+        </div>
+        <div>
+            <a href="Equipo.html" style="color:white">
+                <img src="Equipo.png" alt="Equipo">
+                <p>EQUIPO</p>
+            </a>
+        </div>    
+        <div>
+            <a href="Viptask.html" style="color:white">
+                <img src="Vip-icono (1).png" alt="VIP">
+                <p>VIP</p>
+            </a>
+        </div>
+        <div>
+            <a href="Perfil.html" style="color:white">
+                <img src="Bank_1.png" alt="Mi">
+                <p>CUENTA</p>
+            </a>
         </div>
     </div>
 
