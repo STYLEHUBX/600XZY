@@ -242,90 +242,89 @@
         function getRemainingTime() {
             const now = new Date();
             const resetTime = new Date();
-             // Continuación del código
-        resetTime.setHours(23, 59, 59, 999); // Hora de reinicio a las 23:59:59.999
-        if (now.getTime() > resetTime.getTime()) {
-            resetTime.setDate(resetTime.getDate() + 1); // Mueve al día siguiente
-        }
-        return resetTime.getTime() - now.getTime();
-    }
-
-    function updateCountdown() {
-        const remainingTime = getRemainingTime();
-        if (remainingTime <= 0) {
-            countdownElement.innerText = '¡Es hora de cuantificar!';
-            countdownElement.style.display = 'none';
-            quantifyButton.disabled = false;
-            return;
+            resetTime.setHours(23, 59, 59, 999); // Hora de reinicio a las 23:59:59.999
+            if (now.getTime() > resetTime.getTime()) {
+                resetTime.setDate(resetTime.getDate() + 1); // Mueve al día siguiente
+            }
+            return resetTime.getTime() - now.getTime();
         }
 
-        const hours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-        const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
-        const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
-
-        countdownElement.innerText = `Tiempo restante: ${hours}h ${minutes}m ${seconds}s`;
-        countdownElement.style.display = 'block';
-        quantifyButton.disabled = true;
-    }
-
-    function quantify() {
-        const now = Date.now();
-        const lastQuantifyTime = parseInt(localStorage.getItem('lastQuantifyTime') || '0', 10);
-        const quantifyCount = parseInt(localStorage.getItem('quantifyCount') || '0', 10);
-        const oneDay = 24 * 60 * 60 * 1000; // Milisegundos en un día
-
-        if (now - lastQuantifyTime >= oneDay) {
-            localStorage.setItem('quantifyCount', '0'); // Reinicia el conteo de cuantificaciones
-        }
-
-        if (quantifyCount >= 2) {
-            statusMessageElement.innerText = 'Ya has realizado las 2 cuantificaciones diarias.';
-            updateCountdown();
-            return;
-        }
-
-        statusMessageElement.innerText = 'Cuantificando...';
-        quantifyButton.disabled = true;
-
-        setTimeout(() => {
-            statusMessageElement.innerText = 'Cuantificación completada.';
-            const newCount = quantifyCount + 1;
-            localStorage.setItem('lastQuantifyTime', now.toString());
-            localStorage.setItem('quantifyCount', newCount.toString());
-            updateCountdown(); // Completa la actualización del contador
-        }, 3000); // Simulación de una acción que toma 3 segundos
-    }
-
-    function animateWithdrawals() {
-        let index = 0;
-
-        function showNextItem() {
-            if (index >= withdrawalItems.length) {
-                index = 0;
+        function updateCountdown() {
+            const remainingTime = getRemainingTime();
+            if (remainingTime <= 0) {
+                countdownElement.innerText = '¡Es hora de cuantificar!';
+                countdownElement.style.display = 'none';
+                quantifyButton.disabled = false;
+                return;
             }
 
-            withdrawalItems.forEach((item) => {
-                item.classList.remove('show');
-                item.style.transform = 'translateY(100%)';
-                item.style.opacity = '0';
-            });
+            const hours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+            const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+            const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
 
-            const currentItem = withdrawalItems[index];
-            currentItem.classList.add('show');
-            currentItem.style.transform = 'translateY(0)';
-            currentItem.style.opacity = '1';
-
-            index++;
-            setTimeout(showNextItem, 5000); // Muestra el siguiente ítem después de 5 segundos
+            countdownElement.innerText = `Tiempo restante: ${hours}h ${minutes}m ${seconds}s`;
+            countdownElement.style.display = 'block';
+            quantifyButton.disabled = true;
         }
 
-        showNextItem();
-    }
+        function quantify() {
+            const now = Date.now();
+            const lastQuantifyTime = parseInt(localStorage.getItem('lastQuantifyTime') || '0', 10);
+            const quantifyCount = parseInt(localStorage.getItem('quantifyCount') || '0', 10);
+            const oneDay = 24 * 60 * 60 * 1000; // Milisegundos en un día
 
-    // Inicializa la cuenta regresiva y las animaciones al cargar la página
-    updateCountdown();
-    setInterval(updateCountdown, 1000); // Actualiza la cuenta regresiva cada segundo
-    animateWithdrawals();
+            if (now - lastQuantifyTime >= oneDay) {
+                localStorage.setItem('quantifyCount', '0'); // Reinicia el conteo de cuantificaciones
+            }
+
+            if (quantifyCount >= 2) {
+                statusMessageElement.innerText = 'Ya has realizado las 2 cuantificaciones diarias.';
+                updateCountdown();
+                return;
+            }
+
+            statusMessageElement.innerText = 'Cuantificando... Esto puede tardar 1 minuto o 2';
+            quantifyButton.disabled = true;
+
+            setTimeout(() => {
+                statusMessageElement.innerText = 'Cuantificación completada. Puedes volver a cuantificar.';
+                const newCount = quantifyCount + 1;
+                localStorage.setItem('lastQuantifyTime', now.toString());
+                localStorage.setItem('quantifyCount', newCount.toString());
+                updateCountdown(); // Completa la actualización del contador
+            }, 120000); // Simulación de una acción que toma 2 minutos (120,000 ms)
+        }
+
+        function animateWithdrawals() {
+            let index = 0;
+
+            function showNextItem() {
+                if (index >= withdrawalItems.length) {
+                    index = 0;
+                }
+
+                withdrawalItems.forEach((item) => {
+                    item.classList.remove('show');
+                    item.style.transform = 'translateY(100%)';
+                    item.style.opacity = '0';
+                });
+
+                const currentItem = withdrawalItems[index];
+                currentItem.classList.add('show');
+                currentItem.style.transform = 'translateY(0)';
+                currentItem.style.opacity = '1';
+
+                index++;
+                setTimeout(showNextItem, 5000); // Muestra el siguiente ítem después de 5 segundos
+            }
+
+            showNextItem();
+        }
+
+        // Inicializa la cuenta regresiva y las animaciones al cargar la página
+        updateCountdown();
+        setInterval(updateCountdown, 1000); // Actualiza la cuenta regresiva cada segundo
+        animateWithdrawals();
     </script>
 </body>
 </html>
