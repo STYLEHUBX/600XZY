@@ -1,84 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesional Design</title>
+    <title>Recarga de Saldo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('https://github.com/user-attachments/assets/2a40f9c6-53ba-4868-9631-36fb081097b2');/* Fondo mezclado de azul oscuro, negro y blanco */
-            color: white;
+            background-color: #f8f9fa;
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: 100vh;
+            padding: 20px;
         }
-        .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-            background: #0D47A1; /* Botón con fondo mezclado de azul oscuro, negro y blanco */
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
             padding: 10px;
-            border-radius: 5px;
+            margin-top: 5px;
+            box-sizing: border-box;
         }
-        .back-button svg {
-            margin-right: 5px;
-        }
-        .card-container {
-            display: flex;
-            flex-direction: column;
-            width: 90%; /* Más ancho */
-            margin-top: 80px; /* Ajustar la posición 20px más abajo */
-        }
-        .card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #0D47A1; /* Cuadros horizontales azul oscuro y negro */
-            padding: 20px; /* Más ancho */
-            margin: 10px 0;
-            border-radius: 5px;
-            text-decoration: none;
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
             color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
         }
-        .card img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
+        button:hover {
+            background-color: #0056b3;
         }
-        .card span {
-            flex-grow: 1;
+        .alert {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
         }
-        .card svg {
-            fill: white;
+        .alert.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .alert.error {
+            background-color: #f8d7da;
+            color: #721c24;
         }
     </style>
 </head>
 <body>
-    <a href="Home.html" class="back-button">
-        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>Volver
-    </a>
-
-    <div class="card-container">
-        <a href="Usdt-pago.html" class="card">
-            <img src="Usdt.jpg" alt="USDT Icon">
-            <span>TRC20-USDT</span>
-            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-        </a>
-        <a href="Trx.html" class="card">
-            <img src="Trx.jpeg" alt="TRX Icon">
-            <span>TRX</span>
-            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
-        </a>
+    <div class="container">
+        <h1>Recarga de Saldo</h1>
+        <div class="form-group">
+            <label for="user_id">ID de Usuario</label>
+            <input type="text" id="user_id" placeholder="Ingrese su ID de usuario">
+        </div>
+        <div class="form-group">
+            <label for="method">Método de Recarga</label>
+            <select id="method">
+                <option value="usdt_trx">USDT (TRX)</option>
+                <option value="nequi">Nequi</option>
+                <option value="usdt_other">USDT (Otro)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="amount">Monto</label>
+            <input type="number" id="amount" placeholder="Ingrese el monto a recargar">
+        </div>
+        <button onclick="recargar()">Recargar</button>
+        <div id="alert" class="alert" style="display:none;"></div>
     </div>
+
+    <script>
+        function recargar() {
+            const userId = document.getElementById('user_id').value;
+            const method = document.getElementById('method').value;
+            const amount = document.getElementById('amount').value;
+            const alertBox = document.getElementById('alert');
+
+            fetch('/recargar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    method: method,
+                    amount: parseFloat(amount)
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alertBox.style.display = 'block';
+                    alertBox.className = 'alert success';
+                    alertBox.textContent = data.message;
+                } else {
+                    alertBox.style.display = 'block';
+                    alertBox.className = 'alert error';
+                    alertBox.textContent = data.error;
+                }
+            })
+            .catch(error => {
+                alertBox.style.display = 'block';
+                alertBox.className = 'alert error';
+                alertBox.textContent = 'Ocurrió un error: ' + error.message;
+            });
+        }
+    </script>
 </body>
 </html>
