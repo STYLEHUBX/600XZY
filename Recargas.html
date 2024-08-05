@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario</title>
+    <title>Recargas de Usuario</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -125,9 +125,14 @@
             return Math.floor(100000 + Math.random() * 900000);
         }
 
-        function handleSubmit(event) {
+        function handleSubmitNequi(event) {
             event.preventDefault();
             alert('Tu envío de depósito está en proceso, ten paciencia.');
+        }
+
+        function handleSubmitUSDT(event) {
+            event.preventDefault();
+            alert('El mínimo de retiro son 5.00 USDT, 20.000 Mil pesos Colombianos.');
         }
 
         function copyToClipboard(text) {
@@ -140,8 +145,11 @@
 
         window.onload = function() {
             document.getElementById('profile-id').textContent = 'ID: ' + generateRandomID();
-            document.querySelectorAll('.recarga-form button').forEach(button => {
-                button.addEventListener('click', handleSubmit);
+            document.querySelectorAll('.recarga-form.nequi-form button').forEach(button => {
+                button.addEventListener('click', handleSubmitNequi);
+            });
+            document.querySelectorAll('.recarga-form.usdt-form button').forEach(button => {
+                button.addEventListener('click', handleSubmitUSDT);
             });
             document.querySelectorAll('.copy-text').forEach(elem => {
                 elem.addEventListener('click', () => copyToClipboard(elem.textContent));
@@ -156,7 +164,7 @@
         <div class="balance">Balance: $0.00</div>
         <div class="recharges">Recargas: $0.00</div>
         <div class="license">Licencia de Inversiones Colombia</div>
-        <div class="recarga-form">
+        <div class="recarga-form nequi-form">
             <h3>Recarga con Nequi</h3>
             <img src="nequi-qr.png" alt="Depósito NEQUI">
             <div>Depósito NEQUI</div>
@@ -168,7 +176,7 @@
                 <button type="submit">Enviar</button>
             </form>
         </div>
-        <div class="recarga-form">
+        <div class="recarga-form usdt-form">
             <h3>Recarga con USDT</h3>
             <img src="https://github.com/user-attachments/assets/fdda3dff-9f15-4b5b-b285-423728481a9d" alt="Depósito TRC20-USDT">
             <div>Depósito TRC20-USDT</div>
@@ -181,7 +189,9 @@
                 <input type="text" id="textt" value="TJ6QaxbDeK2sHbeTLWjKFdqiG4eiCaivNu" class="read-only" readonly>
                 <button type="submit">Enviar</button>
             </form>
-            
+            <div class="copy-text" onclick="copyToClipboard('TJ6QaxbDeK2sHbeTLWjKFdqiG4eiCaivNu')">
+                TJ6QaxbDeK2sHbeTLWjKFdqiG4eiCaivNu
+            </div>
         </div>
     </div>
 </body>
