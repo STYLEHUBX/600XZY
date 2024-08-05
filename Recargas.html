@@ -3,126 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recarga de Saldo</title>
+    <title>Perfil de Usuario</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: white;
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
+        .profile-container {
+            background-color: #34495e;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             text-align: center;
+            width: 350px;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .profile-id {
+            margin: 5px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .balance, .recharges {
+            margin: 20px 0;
+        }
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .buttons-container button {
+            margin: 5px;
+            flex: 1 1 calc(50% - 10px);
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons-container .last-button {
+            flex: 1 1 100%;
+            margin-top: 10px;
+        }
+        .license {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #bdc3c7;
+        }
+        .qr-images {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 20px;
         }
-        .form-group {
-            margin-bottom: 15px;
+        .qr-images img {
+            width: 45%;
+            border-radius: 10px;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
+        .qr-images div {
+            text-align: center;
+            font-size: 0.9em;
             margin-top: 5px;
-            box-sizing: border-box;
         }
-        button {
-            width: 100%;
+        .recarga-form {
+            background-color: #2c3e50;
             padding: 10px;
-            background-color: #007bff;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
             border-radius: 5px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .alert {
             margin-top: 20px;
-            padding: 15px;
+            text-align: left;
+        }
+        .recarga-form label {
+            display: block;
+            margin-top: 10px;
+        }
+        .recarga-form input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: none;
             border-radius: 5px;
         }
-        .alert.success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        .alert.error {
-            background-color: #f8d7da;
-            color: #721c24;
+        .recarga-form button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Recarga de Saldo</h1>
-        <div class="form-group">
-            <label for="user_id">ID de Usuario</label>
-            <input type="text" id="user_id" placeholder="Ingrese su ID de usuario">
-        </div>
-        <div class="form-group">
-            <label for="method">Método de Recarga</label>
-            <select id="method">
-                <option value="usdt_trx">USDT (TRX)</option>
-                <option value="nequi">Nequi</option>
-                <option value="usdt_other">USDT (Otro)</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="amount">Monto</label>
-            <input type="number" id="amount" placeholder="Ingrese el monto a recargar">
-        </div>
-        <button onclick="recargar()">Recargar</button>
-        <div id="alert" class="alert" style="display:none;"></div>
-    </div>
-
     <script>
-        function recargar() {
-            const userId = document.getElementById('user_id').value;
-            const method = document.getElementById('method').value;
-            const amount = document.getElementById('amount').value;
-            const alertBox = document.getElementById('alert');
-
-            fetch('/recargar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    user_id: userId,
-                    method: method,
-                    amount: parseFloat(amount)
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alertBox.style.display = 'block';
-                    alertBox.className = 'alert success';
-                    alertBox.textContent = data.message;
-                } else {
-                    alertBox.style.display = 'block';
-                    alertBox.className = 'alert error';
-                    alertBox.textContent = data.error;
-                }
-            })
-            .catch(error => {
-                alertBox.style.display = 'block';
-                alertBox.className = 'alert error';
-                alertBox.textContent = 'Ocurrió un error: ' + error.message;
-            });
+        function generateRandomID() {
+            return Math.floor(100000 + Math.random() * 900000);
+        }
+        window.onload = function() {
+            document.getElementById('profile-id').textContent = 'ID: ' + generateRandomID();
         }
     </script>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="qr-images">
+            <div>
+                <img src="nequi-qr.png" alt="Depósito NEQUI">
+                <div>Depósito NEQUI</div>
+            </div>
+            <div>
+                <img src="trc20-qr.png" alt="Depósito TRC20-USDT">
+                <div>Depósito TRC20-USDT</div>
+            </div>
+        </div>
+        <img src="profile.jpg" alt="Profile Image" class="profile-img">
+        <div id="profile-id" class="profile-id"></div>
+        <div class="balance">Balance: $0.00</div>
+        <div class="recharges">Recargas: $0.00</div>
+        <div class="buttons-container">
+            <button>Botón 1</button>
+            <button>Botón 2</button>
+            <button>Botón 3</button>
+            <button>Botón 4</button>
+            <button class="last-button">Botón 5</button>
+        </div>
+        <div class="license">Licencia de Inversiones Colombia</div>
+        <div class="recarga-form">
+            <h3>Recarga con Nequi</h3>
+            <label for="codigo-referencia-nequi">Código de Referencia Nequi</label>
+            <input type="text" id="codigo-referencia-nequi" placeholder="Ingrese el código de referencia">
+            <label for="numero-telefono">Número de Teléfono</label>
+            <input type="text" id="numero-telefono" placeholder="Ingrese su número de teléfono">
+            <button>Recargar</button>
+        </div>
+        <div class="recarga-form">
+            <h3>Recarga con USDT</h3>
+            <label for="tixd">TIXD</label>
+            <input type="text" id="tixd" placeholder="Ingrese el TIXD">
+            <label for="id-binance">ID de Binance</label>
+            <input type="text" id="id-binance" placeholder="Ingrese el ID de Binance">
+            <button>Recargar</button>
+        </div>
+    </div>
 </body>
 </html>
