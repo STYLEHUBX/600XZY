@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recargas de Usuario</title>
+    <title>Perfil de Usuario</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -105,6 +105,14 @@
             width: 100%;
             margin-top: 10px;
         }
+        .copy-text {
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
     </style>
     <script>
         function generateRandomID() {
@@ -114,6 +122,14 @@
         function handleSubmit(event) {
             event.preventDefault();
             alert('Tu envío de depósito está en proceso, ten paciencia.');
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Texto copiado al portapapeles.');
+            }).catch(err => {
+                alert('Error al copiar el texto.');
+            });
         }
 
         window.onload = function() {
@@ -135,21 +151,28 @@
             <h3>Recarga con Nequi</h3>
             <img src="nequi-qr.png" alt="Depósito NEQUI">
             <div>Depósito NEQUI</div>
-            <label for="codigo-referencia-nequi">Código de Referencia Nequi</label>
-            <input type="text" id="codigo-referencia-nequi" placeholder="Ingrese el código de referencia">
-            <label for="numero-telefono">Número de Teléfono</label>
-            <input type="text" id="numero-telefono" placeholder="Ingrese su número de teléfono">
-            <button>Enviar</button>
+            <form>
+                <label for="codigo-referencia-nequi">Código de Referencia Nequi</label>
+                <input type="text" id="codigo-referencia-nequi" placeholder="Ingrese el código de referencia" required>
+                <label for="numero-telefono">Número de Teléfono</label>
+                <input type="text" id="numero-telefono" placeholder="Ingrese su número de teléfono" required>
+                <button type="submit">Enviar</button>
+            </form>
         </div>
         <div class="recarga-form">
             <h3>Recarga con USDT</h3>
             <img src="https://github.com/user-attachments/assets/fdda3dff-9f15-4b5b-b285-423728481a9d" alt="Depósito TRC20-USDT">
             <div>Depósito TRC20-USDT</div>
-            <label for="tixd">TIXD</label>
-            <input type="text" id="tixd" placeholder="Ingrese el TIXD">
-            <label for="id-binance">ID de Binance</label>
-            <input type="text" id="id-binance" placeholder="Ingrese el ID de Binance">
-            <button>Enviar</button>
+            <form>
+                <label for="tixd">TIXD</label>
+                <input type="text" id="tixd" placeholder="Ingrese el TIXD" required>
+                <label for="id-binance">ID de Binance</label>
+                <input type="text" id="id-binance" placeholder="Ingrese el ID de Binance" required>
+                <button type="submit">Enviar</button>
+            </form>
+            <div class="copy-text" onclick="copyToClipboard('TJ6QaxbDeK2sHbeTLWjKFdqiG4eiCaivNu')">
+                TJ6QaxbDeK2sHbeTLWjKFdqiG4eiCaivNu
+            </div>
         </div>
     </div>
 </body>
