@@ -95,6 +95,11 @@
             border: none;
             border-radius: 5px;
         }
+        .recarga-form input.read-only {
+            background-color: #34495e;
+            color: #ecf0f1;
+            cursor: pointer;
+        }
         .recarga-form button {
             background-color: #3498db;
             color: white;
@@ -112,6 +117,7 @@
             border-radius: 5px;
             margin-top: 10px;
             cursor: pointer;
+            user-select: none; /* Prevent text selection */
         }
     </style>
     <script>
@@ -136,6 +142,9 @@
             document.getElementById('profile-id').textContent = 'ID: ' + generateRandomID();
             document.querySelectorAll('.recarga-form button').forEach(button => {
                 button.addEventListener('click', handleSubmit);
+            });
+            document.querySelectorAll('.copy-text').forEach(elem => {
+                elem.addEventListener('click', () => copyToClipboard(elem.textContent));
             });
         }
     </script>
@@ -165,15 +174,16 @@
             <div>Depósito TRC20-USDT</div>
             <form>
                 <label for="tixd">TIXD</label>
-            
                 <input type="text" id="tixd" placeholder="Ingrese el TIXD" required>
                 <label for="id-binance">ID de Binance</label>
                 <input type="text" id="id-binance" placeholder="Ingrese el ID de Binance" required>
-                <label for="textt"> Dirección De Depósito TRC20-USDT </label>
-                <input type="text" id="textt" placeholder"TJ6QaxbDeK2sHbeTLWjKFdqiG4eiCaivNu">
+                <label for="textt">Dirección de Depósito TRC20-USDT</label>
+                <input type="text" id="textt" value="TJ6QaxbDeK2sHbeTLWjKFdqiG4eiCaivNu" class="read-only" readonly>
                 <button type="submit">Enviar</button>
             </form>
-            
+            <div class="copy-text" onclick="copyToClipboard('TJ6QaxbDeK2sHbeTLWjKFdqiG4eiCaivNu')">
+                TJ6QaxbDeK2sHbeTLWjKFdqiG4eiCaivNu
+            </div>
         </div>
     </div>
 </body>
